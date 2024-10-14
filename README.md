@@ -44,3 +44,35 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Project Architecture
+
+### apis
+
+- 외부 API와의 통신을 담당하는 함수 및 클래스 포함
+- REST API 호출, GraphQL 쿼리 등
+
+### assets
+
+- 정적 파일들을 저장하는 디렉토리
+- 이미지, 폰트, 아이콘 등
+
+### components
+
+- 재사용 가능한 UI 컴포넌트들을 저장
+- 버튼, 입력 필드, 카드 등 애플리케이션 전반에서 사용되는 UI 요소
+
+### hooks
+
+- 커스텀 React 훅을 저장
+- 상태 관리, 사이드 이펙트 처리 등을 위한 재사용 가능한 로직
+
+### pages
+
+- 라우팅 가능한 페이지 컴포넌트들을 저장
+- 홈페이지, 로그인 페이지, 프로필 페이지 등 각 라우트에 해당하는 최상위 컴포넌트
+
+### styles
+
+- 전역 스타일 또는 스타일 관련 유틸리티
+- 글로벌 CSS, 테마 설정, 스타일 상수 등

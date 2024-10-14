@@ -1,4 +1,7 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-# npm test
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=`cat $COMMIT_MSG_FILE`
+
+echo "$COMMIT_MSG"

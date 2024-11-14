@@ -1,0 +1,31 @@
+name: Check Build Possibility
+# workflow의 이름
+
+on:
+  pull_request:
+    branches: ['main']
+# 트리거 설정
+# main 브랜치로 pull_request가 생성될 때마다 자동으로 실행
+
+jobs:
+  build-test:
+    # build-test라는 작업 정의
+    runs-on: ubuntu-24.04
+    # ubuntu-24.04 환경에서 실행되도록 지정
+    env:
+      DISABLE_ESLINT_PLUGIN: true
+      # ESLint 플러그인이 빌드 과정에서 비활성화되도록 지정
+      # 빌드 속도를 높임
+    steps:
+      - uses: actions/checkout@v3
+      # 현재 PR에 포함된 코드를 가져옴
+      - uses: actions/setup-node@v3.5.1
+        with:
+          node-version: '21.2.0'
+      # Nodejs 21.2.0 버전 설치
+      - name: Install dependencies
+        run: npm install
+      # 의존성 설치
+      - name: Try build
+        run: npm run build
+      # 프로젝트가 빌드 가능한지 테스트

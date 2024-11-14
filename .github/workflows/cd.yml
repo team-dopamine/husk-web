@@ -1,0 +1,37 @@
+name: Continuous Deployment
+#workflow의 이름
+
+on:
+  push:
+    branches: ['main']
+# 트리거 설정
+# main 브랜치로 push가 발생할 때마다 자동으로 실행
+
+jobs:
+  deploy:
+    # deploy라는 작업 정의
+    runs-on: ubuntu-24.04
+    #ubuntu-24.04 환경에서 실행되도록 지정
+
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.push.base_ref }}
+      # 배포할 최신 코드(현재 브랜치 기준) 가져옴
+
+      - name: Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        # SSH 연결을 통해 원격 서버에 접속
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SERVER_KEY }}
+          # GitHub Secrets에 저장된 환경 변수 가져옴
+          script: |
+            cd /home/ubuntu/husk-web
+            git pull origin main
+            npm install
+            nohup npm start &
+          # 명령 실행

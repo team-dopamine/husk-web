@@ -1,11 +1,30 @@
 name: Continuous Deployment
-#workflow의 이름
 
 on:
   push:
     branches: ['main']
-# 트리거 설정
-# main 브랜치로 push가 발생할 때마다 자동으로 실행
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: false
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
@@ -34,4 +53,3 @@ jobs:
             git pull origin main
             npm install
             nohup npm start &
-          # 명령 실행

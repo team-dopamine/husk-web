@@ -1,0 +1,42 @@
+name: Check Build Possibility
+
+on:
+  pull_request:
+    branches: ['main']
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    env:
+      DISABLE_ESLINT_PLUGIN: true
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3.5.1
+        with:
+          node-version: '21.2.0'
+      - name: Install dependencies
+        run: npm install
+      - name: Try build
+        run: npm run build

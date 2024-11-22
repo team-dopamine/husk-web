@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -35,4 +36,14 @@ export const LogoImg = styled.div`
   opacity: 10%;
 `;
 
-export const LoginBtn = styled.div``;
+export const LoginButton = styled(Button)`
+  background-color: black !important;
+  opacity: 50% !important;
+
+  &:hover {
+    background-color: white !important;
+    color: gray !important;
+    font-weight: 700;
+    border-color: gray !important;
+  }
+`;

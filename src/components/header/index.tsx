@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton } from '../styles/Header-styled';
+import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton } from './index.style';
 
 const Header: React.FC = () => {
   return (

@@ -41,12 +41,12 @@ export const Desc = styled.div`
   margin-bottom: 24px;
 `;
 
-export const ButtonContainer = styled.div`
+export const BtnContainer = styled.div`
   display: flex;
   gap: 12px;
 `;
 
-export const FunctButton = styled(Button)`
+export const FunctBtn = styled(Button)`
   color: white;
   border: 1px solid white;
   background-color: transparent;
@@ -56,7 +56,7 @@ export const FunctButton = styled(Button)`
   }
 `;
 
-export const StartButton = styled(Button)`
+export const StartBtn = styled(Button)`
   color: white;
   background-color: black;
   border: 1px solid black;

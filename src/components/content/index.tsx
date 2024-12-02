@@ -1,14 +1,14 @@
-import { Banner, Title, Desc, ButtonContainer, FunctButton, StartButton, MainContent, Img, ContentContainer, MainTitle, MainDesc } from './index.style';
+import { Banner, Title, Desc, BtnContainer, FunctBtn, StartBtn, MainContent, Img, ContentContainer, MainTitle, MainDesc } from './index.style';
 
 const Content = () => (
   <>
     <Banner>
       <Title>Welcome to Our Service Hub</Title>
       <Desc>Find the best services here</Desc>
-      <ButtonContainer>
-        <FunctButton>기능 소개</FunctButton>
-        <StartButton>시작하기</StartButton>
-      </ButtonContainer>
+      <BtnContainer>
+        <FunctBtn>기능 소개</FunctBtn>
+        <StartBtn>시작하기</StartBtn>
+      </BtnContainer>
     </Banner>
     <MainContent>
       <Img />

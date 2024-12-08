@@ -39,7 +39,7 @@ export const Title = styled.div`
   margin-bottom: 24px;
 `;
 
-export const Desc = styled.div`
+export const Description = styled.div`
   color: white;
   font-size: 16px;
   font-weight: 400;
@@ -47,7 +47,7 @@ export const Desc = styled.div`
   margin-bottom: 24px;
 `;
 
-export const BtnContainer = styled.div`
+export const ButtonContainer = styled.div`
   display: flex;
   gap: 12px;
 `;
@@ -92,7 +92,7 @@ export const MainTitle = styled.div`
   color: black;
 `;
 
-export const MainDesc = styled.div`
+export const MainDescription = styled.div`
   font-size: 16px;
   font-weight: 400;
   text-align: center;

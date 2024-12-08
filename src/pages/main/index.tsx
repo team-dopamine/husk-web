@@ -1,7 +1,7 @@
 import Header from '../../components/header';
 import Footer from '../../components/footer';
-import Content from '../../components/content';
 import { Layout } from './index.style';
+import Content from './content';
 
 const Main = () => {
   return (

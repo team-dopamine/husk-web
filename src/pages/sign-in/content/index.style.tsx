@@ -4,8 +4,8 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: calc(100vh - 160px);
-  padding: 40px 20px;
+  height: calc(100vh - 300px);
+  flex: 1;
 `;
 
 export const ContentWrapper = styled.div`
@@ -27,7 +27,7 @@ export const ButtonGroup = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 16px;
+  gap: 30px;
 `;
 
 export const OAuthButton = styled.button`

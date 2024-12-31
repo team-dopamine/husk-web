@@ -8,7 +8,9 @@ const Header: React.FC = () => {
         <LogoImg />
         <Logo>Husk</Logo>
       </LogoWrapper>
-      <LoginButton type="primary">Login</LoginButton>
+      <LoginButton type="primary" href="/sign-in">
+        Login
+      </LoginButton>
     </HeaderWrapper>
   );
 };

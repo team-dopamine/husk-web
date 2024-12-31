@@ -39,6 +39,7 @@ export const LogoImg = styled.div`
 export const LoginButton = styled(Button)`
   background-color: black !important;
   opacity: 50% !important;
+  text-decoration: none;
 
   &:hover {
     background-color: white !important;

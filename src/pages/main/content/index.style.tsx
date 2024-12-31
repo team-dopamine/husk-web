@@ -66,23 +66,34 @@ export const StartButton = styled(ButtonStyle)`
 
 export const MainContent = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 60px;
-  margin: 80px 0;
-  padding: 40px;
+  flex-direction: column;
+  gap: 120px;
+  margin: 80px auto;
+  max-width: 1200px;
+  padding: 0 40px;
 `;
 
-export const Img = styled.div`
+export const ContentImage = styled.div`
   width: 520px;
   height: 390px;
   background-color: #d9d9d980;
+  border-radius: 12px;
+  flex-shrink: 0;
 `;
 
 export const ContentContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 80px;
+
+  &:nth-child(even) {
+    flex-direction: row-reverse;
+  }
+`;
+
+export const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 24px;
 `;
 
@@ -95,5 +106,6 @@ export const MainTitle = styled.div`
 export const MainDescription = styled.div`
   font-size: 16px;
   font-weight: 400;
-  text-align: center;
+  line-height: 1.6;
+  color: #666;
 `;

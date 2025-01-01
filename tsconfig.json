@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "paths": {
-      "@components/*": ["src/components/*"], // 별칭을 설정
-      "@apis/*": ["src/apis/*"],
-      "@assets/*": ["src/assets/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@pages/*": ["src/pages/*"],
-      "@styles/*": ["src/styles/*"]
+      "@components/*": ["./components/*"], // 별칭을 설정
+      "@apis/*": ["./apis/*"],
+      "@assets/*": ["./assets/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@pages/*": ["./pages/*"],
+      "@styles/*": ["./styles/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

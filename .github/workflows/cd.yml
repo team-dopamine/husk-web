@@ -2,7 +2,7 @@ name: Continuous Deployment
 
 on:
   push:
-    branches: ['main']
+    branches: ['develop']
   workflow_dispatch:
     inputs:
       logLevel:
@@ -27,29 +27,36 @@ permissions:
   contents: read
 
 jobs:
-  deploy:
-    # deploy라는 작업 정의
-    runs-on: ubuntu-24.04
-    #ubuntu-24.04 환경에서 실행되도록 지정
+  develop-deploy:
+    runs-on: ubuntu-20.04
 
     steps:
+      # 1. Compare branch 코드 내려 받기
       - name: Checkout PR
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.push.base_ref }}
-      # 배포할 최신 코드(현재 브랜치 기준) 가져옴
 
+      # 2. Docker 이미지 build 및 push
+      - name: Docker build and push
+        run: |
+          echo "${{ secrets.ENVIRONMENT }}" > .env
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t teamdopamine/husk-web:latest .
+          docker push teamdopamine/husk-web:latest
+
+      # 3. SSH ACTION을 통한 Run-Command (Docker 이미지 pull 후 docker-compose를 통한 실행)
       - name: Deploy
-        uses: appleboy/ssh-action@v1.0.3
-        # SSH 연결을 통해 원격 서버에 접속
+        uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.SERVER_KEY }}
-          # GitHub Secrets에 저장된 환경 변수 가져옴
+          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /home/ubuntu/husk-web
-            git pull origin main
-            npm install
-            nohup npm start &
+            sudo docker stop husk-web
+            sudo docker rm husk-web
+            sudo docker system prune -af
+            sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+            sudo docker pull teamdopamine/husk-web:latest
+            sudo docker run -d -p 80:80 --name husk-web teamdopamine/husk-web:latest

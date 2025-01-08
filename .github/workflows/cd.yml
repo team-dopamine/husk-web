@@ -54,9 +54,9 @@ jobs:
           username: ${{ secrets.SERVER_USERNAME }}
           key: ${{ secrets.SERVER_KEY }}
           script: |
-            sudo docker stop husk-web
-            sudo docker rm husk-web
+            sudo docker stop husk-web || true
+            sudo docker rm husk-web || true
             sudo docker system prune -af
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker pull teamdopamine/husk-web:latest
-            sudo docker run -d -p 80:3000 teamdopamine/husk-web:latest
+            sudo docker run -d --name husk-web -p 80:3000 teamdopamine/husk-web:latest

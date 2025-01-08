@@ -23,7 +23,7 @@ const ReadTermsContent = () => {
       <ContentWrapper>
         <Title>Sign Up</Title>
         <TermsWrapper>
-          <Label>약관</Label>
+          <Label>이용약관</Label>
           <TermsTextarea readOnly value="약관 내용" />
           <AgreementCheckboxWrapper>
             <AgreementText>상기 내용에 동의합니다.</AgreementText>

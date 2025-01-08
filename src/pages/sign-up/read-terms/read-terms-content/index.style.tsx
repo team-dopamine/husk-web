@@ -127,4 +127,10 @@ export const NextButton = styled(ButtonStyle)<{ disabled: boolean }>`
   color: ${({ disabled }) => (disabled ? '#a6a6a6' : 'white')};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
+
+  &:hover {
+    background-color: gray !important;
+    color: white !important;
+    border: none;
+  }
 `;

@@ -5,7 +5,7 @@ interface ApiErrorResponse {
 }
 
 const api = axios.create({
-  baseURL: 'http://54.180.29.79:8080/',
+  baseURL: process.env.REACT_APP_BASE_URL,
   withCredentials: true,
 });
 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { EmailWrapper, FormContainer, Label, InputField, RequestCodeButton, VerifyWrapper, VerifyButton, Timer, EmailFieldWrapper, Message } from './index.style';
+import postSendCode from 'api/send-code';
 
 interface EmailVerifyProps {
   onInputChange: (email: string, code: string) => void;
@@ -13,8 +14,6 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
   const [alertShown, setAlertShown] = useState(false);
   const [emailDisabled, setEmailDisabled] = useState(false);
 
-  //   TODO: Hook 컴포넌트 분리
-
   useEffect(() => {
     const savedTimer = sessionStorage.getItem('timer');
     const savedEmailDisabled = sessionStorage.getItem('emailDisabled');
@@ -27,39 +26,54 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
     }
 
     setEmailDisabled(savedEmailDisabled === 'true' && Number(savedTimer) > 0);
-
-    if (savedShowCodeVerify === 'true' && Number(savedTimer) > 0) {
-      setShowCodeVerify(true);
-    } else {
-      setShowCodeVerify(false);
-    }
+    setShowCodeVerify(savedShowCodeVerify === 'true' && Number(savedTimer) > 0);
   }, []);
 
   useEffect(() => {
-    sessionStorage.setItem('timer', timer.toString());
-    sessionStorage.setItem('emailDisabled', emailDisabled.toString());
-    sessionStorage.setItem('showCodeVerify', showCodeVerify.toString());
-
     if (showCodeVerify && timer > 0) {
       const interval = setInterval(() => {
-        setTimer((prev) => prev - 1);
+        setTimer((prev) => Math.max(prev - 1, 0));
       }, 1000);
 
       return () => clearInterval(interval);
-    } else if (timer === 0 && !alertShown) {
+    }
+  }, [showCodeVerify, timer]);
+
+  useEffect(() => {
+    sessionStorage.setItem('timer', timer.toString());
+
+    if (timer === 0 && showCodeVerify) {
       alert('인증 코드가 만료되었습니다. 다시 요청해주세요.');
       setShowCodeVerify(false);
       setEmailDisabled(false);
       setAlertShown(true);
       sessionStorage.clear();
     }
-  }, [showCodeVerify, timer, alertShown, emailDisabled]);
+  }, [timer, showCodeVerify]);
 
-  const handleRequestCode = () => {
-    setShowCodeVerify(true);
-    setTimer(300);
-    setAlertShown(false);
-    setEmailDisabled(true);
+  useEffect(() => {
+    sessionStorage.setItem('showCodeVerify', showCodeVerify.toString());
+  }, [showCodeVerify]);
+
+  const handleRequestCode = async () => {
+    try {
+      if (!email) {
+        alert('이메일을 입력해주세요.');
+        return;
+      }
+
+      await postSendCode({ email, code: '' });
+
+      setShowCodeVerify(true);
+      setTimer(300);
+      setAlertShown(false);
+      setEmailDisabled(true);
+    } catch (error) {
+      console.error('인증 코드 요청 중 오류 발생:', error);
+      setShowCodeVerify(false);
+      setEmailDisabled(false);
+      alert(error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.');
+    }
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,7 +113,7 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
           <VerifyWrapper>
             <InputField id="code" type="text" placeholder="Code" value={code} onChange={handleCodeChange} />
             <VerifyButton type="primary">Verify</VerifyButton>
-            {/* TODO: API 연결 후 Verify 클릭 시 인증 성공 알림*/}
+            {/* TODO: API 연결 후 Verify 클릭 시 인증 성공 알림 */}
           </VerifyWrapper>
           <Timer>{formatTime(timer)}</Timer>
         </>

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Container, ContentWrapper, Title, PreviousButton, NextButton, ButtonGroup } from './index.style';
-import EmailVerify from '@components/sign-up';
+import EmailVerify from '@components/sign-up/email-verify';
 
 const Content = () => {
   const [email, setEmail] = useState('');

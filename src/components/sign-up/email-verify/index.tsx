@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { EmailWrapper, FormContainer, Label, InputField, RequestCodeButton, VerifyWrapper, VerifyButton, Timer, EmailFieldWrapper, Message } from './index.style';
 import postSendCode from 'api/send-code';
+import postVerifyCode from 'api/verify-code'; // postVerifyCode 가져오기
 
 interface EmailVerifyProps {
   onInputChange: (email: string, code: string) => void;
@@ -13,6 +14,7 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
   const [timer, setTimer] = useState(300);
   const [alertShown, setAlertShown] = useState(false);
   const [emailDisabled, setEmailDisabled] = useState(false);
+  const [isVerified, setIsVerified] = useState(false);
 
   useEffect(() => {
     const savedTimer = sessionStorage.getItem('timer');
@@ -76,16 +78,30 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
     }
   };
 
+  const handleVerifyCode = async () => {
+    try {
+      if (!email.trim() || !code.trim()) {
+        alert('이메일과 인증 코드를 입력해주세요.');
+        return;
+      }
+
+      await postVerifyCode({ email, authCode: code });
+      setIsVerified(true);
+      onInputChange(email, code);
+    } catch (error) {
+      console.error('인증 코드 검증 중 오류 발생:', error);
+      alert(error instanceof Error ? error.message : '알 수 없는 오류가 발생했습니다.');
+    }
+  };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    onInputChange(value, code);
+    setEmail(e.target.value);
+    onInputChange('', '');
   };
 
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setCode(value);
-    onInputChange(email, value);
+    setCode(e.target.value);
+    onInputChange('', '');
   };
 
   const formatTime = (time: number): string => {
@@ -112,8 +128,9 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
           <Label>Verify Code</Label>
           <VerifyWrapper>
             <InputField id="code" type="text" placeholder="Code" value={code} onChange={handleCodeChange} />
-            <VerifyButton type="primary">Verify</VerifyButton>
-            {/* TODO: API 연결 후 Verify 클릭 시 인증 성공 알림 */}
+            <VerifyButton type="primary" onClick={handleVerifyCode}>
+              Verify
+            </VerifyButton>
           </VerifyWrapper>
           <Timer>{formatTime(timer)}</Timer>
         </>

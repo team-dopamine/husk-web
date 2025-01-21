@@ -96,7 +96,9 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+
     onInputChange('', '');
+    sessionStorage.setItem('email', e.target.value);
   };
 
   const handleCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {

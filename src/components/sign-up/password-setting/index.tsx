@@ -24,6 +24,23 @@ interface PasswordProps {
 const PasswordSetting: React.FC<PasswordProps> = ({ onInputChange }) => {
   const [state, setState] = useState(createInitialState);
 
+  React.useEffect(() => {
+    const savedPassword = localStorage.getItem('password') || '';
+    const savedPasswordVerify = localStorage.getItem('passwordVerify') || '';
+
+    setState((prev) => ({
+      ...prev,
+      inputs: {
+        password: savedPassword,
+        passwordVerify: savedPasswordVerify,
+      },
+      isValid: {
+        password: isValidPassword(savedPassword),
+        passwordVerify: savedPasswordVerify === savedPassword,
+      },
+    }));
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value } = e.target;
     setState((prev) => {
@@ -32,6 +49,11 @@ const PasswordSetting: React.FC<PasswordProps> = ({ onInputChange }) => {
         ...prev.isValid,
         [id]: id === 'password' ? isValidPassword(value) : value === updatedInputs.password,
       };
+
+      // 로컬 스토리지에 비밀번호와 확인 비밀번호 저장
+      sessionStorage.setItem('password', updatedInputs.password);
+      sessionStorage.setItem('passwordVerify', updatedInputs.passwordVerify);
+
       onInputChange(updatedInputs.password, updatedInputs.passwordVerify);
 
       return { ...prev, inputs: updatedInputs, isValid: updatedIsValid };

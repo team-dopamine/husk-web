@@ -2,11 +2,15 @@ import { useState } from 'react';
 import { Container, ContentWrapper, Title, PreviousButton, NextButton, ButtonGroup } from './index.style';
 import PasswordSetting from '@components/sign-up/password-setting';
 import postSignUp from 'api/sign-up';
+import { useLocation } from 'react-router-dom';
 
 const PasswordContent = () => {
   const [password, setPassword] = useState('');
   const [passwordVerify, setPasswordVerify] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const location = useLocation();
+  const email = location.state?.email || '';
 
   const handleInputChange = (password: string, passwordVerify: string) => {
     setPassword(password);
@@ -21,7 +25,7 @@ const PasswordContent = () => {
     setIsSubmitting(true);
     try {
       await postSignUp({
-        email: 'data',
+        email,
         password,
       });
     } catch (error) {

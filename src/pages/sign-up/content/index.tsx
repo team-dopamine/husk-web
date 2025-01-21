@@ -19,7 +19,7 @@ const Content = () => {
   };
   const handleNextClick = () => {
     if (isVerified) {
-      navigate('/password');
+      navigate('/password', { state: { email } });
     }
   };
 

@@ -1,5 +1,6 @@
 import api from 'api/axios';
 import { AxiosError } from 'axios';
+import { useLocation } from 'react-router-dom';
 
 interface RentalRequestData {
   email: string;
@@ -12,12 +13,12 @@ interface ErrorResponse {
 
 const postSignUp = async (data: RentalRequestData): Promise<void> => {
   try {
-    const email = sessionStorage.getItem('email');
-    const password = sessionStorage.getItem('password');
-
     const response = await api.post(
       'auth/sign-up',
-      { email, password },
+      {
+        email: data.email,
+        password: data.password,
+      },
       {
         headers: {
           'Content-Type': 'application/json',

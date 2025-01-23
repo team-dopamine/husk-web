@@ -12,7 +12,7 @@ const Content = () => {
         </ButtonGroup>
         <SignUpWrapper>
           <SignUpText>
-            계정이 없으신가요? <SignUpLink href="/sign-up">Sign up</SignUpLink>
+            계정이 없으신가요? <SignUpLink href="/read-terms">Sign up</SignUpLink>
           </SignUpText>
         </SignUpWrapper>
       </ContentWrapper>

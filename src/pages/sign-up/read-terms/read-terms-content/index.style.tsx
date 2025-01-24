@@ -9,6 +9,7 @@ const ButtonStyle = styled(Button)`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 `;
 
 export const HiddenCheckbox = styled.input`

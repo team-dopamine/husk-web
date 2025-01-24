@@ -32,6 +32,7 @@ const PasswordSetting: React.FC<PasswordProps> = ({ onInputChange }) => {
         ...prev.isValid,
         [id]: id === 'password' ? isValidPassword(value) : value === updatedInputs.password,
       };
+
       onInputChange(updatedInputs.password, updatedInputs.passwordVerify);
 
       return { ...prev, inputs: updatedInputs, isValid: updatedIsValid };

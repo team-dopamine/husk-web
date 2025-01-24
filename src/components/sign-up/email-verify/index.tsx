@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { EmailWrapper, FormContainer, Label, InputField, RequestCodeButton, VerifyWrapper, VerifyButton, Timer, EmailFieldWrapper, Message } from './index.style';
 import postSendCode from 'api/send-code';
-import postVerifyCode from 'api/verify-code'; // postVerifyCode 가져오기
+import postVerifyCode from 'api/verify-code';
 
 interface EmailVerifyProps {
   onInputChange: (email: string, code: string) => void;
@@ -18,17 +18,12 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
 
   useEffect(() => {
     const savedTimer = sessionStorage.getItem('timer');
-    const savedEmailDisabled = sessionStorage.getItem('emailDisabled');
-    const savedShowCodeVerify = sessionStorage.getItem('showCodeVerify');
 
     if (savedTimer && Number(savedTimer) > 0) {
       setTimer(Number(savedTimer));
     } else {
       setTimer(0);
     }
-
-    setEmailDisabled(savedEmailDisabled === 'true' && Number(savedTimer) > 0);
-    setShowCodeVerify(savedShowCodeVerify === 'true' && Number(savedTimer) > 0);
   }, []);
 
   useEffect(() => {
@@ -52,10 +47,6 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
       sessionStorage.clear();
     }
   }, [timer, showCodeVerify]);
-
-  useEffect(() => {
-    sessionStorage.setItem('showCodeVerify', showCodeVerify.toString());
-  }, [showCodeVerify]);
 
   const handleRequestCode = async () => {
     try {
@@ -96,6 +87,7 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
+
     onInputChange('', '');
   };
 

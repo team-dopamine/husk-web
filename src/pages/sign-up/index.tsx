@@ -1,18 +1,13 @@
-import Header from '@components/header';
-import Footer from '@components/footer';
-import { Layout } from './index.style';
-import Content from './content';
+import { Title } from './index.style';
+import EmailContent from './content/email-verify';
 
-const SignIn = () => {
+const SignUp = () => {
   return (
     <>
-      <Layout>
-        <Header />
-        <Content />
-        <Footer />
-      </Layout>
+      <Title>Sign Up</Title>
+      <EmailContent />
     </>
   );
 };
 
-export default SignIn;
+export default SignUp;

@@ -1,16 +1,4 @@
 import styled from 'styled-components';
-import { Button } from 'antd';
-
-const ButtonStyle = styled(Button)`
-  width: 240px;
-  height: 48px;
-  border-radius: 8px !important;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  text-decoration: none;
-`;
 
 export const HiddenCheckbox = styled.input`
   display: none;
@@ -102,36 +90,4 @@ export const Label = styled.div`
   font-weight: 500;
   text-align: left;
   margin-bottom: 4px;
-`;
-
-export const ButtonGroup = styled.div`
-  display: flex;
-  gap: 12px;
-  margin-top: 60px;
-`;
-
-export const PreviousButton = styled(ButtonStyle)`
-  color: black;
-  border: 1px solid black;
-  background-color: white;
-  text-decoration: none;
-
-  &:hover {
-    background-color: gray !important;
-    color: white !important;
-    border: none;
-  }
-`;
-
-export const NextButton = styled(ButtonStyle)<{ disabled: boolean }>`
-  background-color: ${({ disabled }) => (disabled ? '#d9d9d9' : 'black')};
-  color: ${({ disabled }) => (disabled ? '#a6a6a6' : 'white')};
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  pointer-events: ${({ disabled }) => (disabled ? 'none' : 'auto')};
-
-  &:hover {
-    background-color: gray !important;
-    color: white !important;
-    border: none;
-  }
 `;

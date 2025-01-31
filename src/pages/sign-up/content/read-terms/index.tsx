@@ -1,6 +1,6 @@
 import Content from './content';
 
-const SignIn = () => {
+const ReadTerms = () => {
   return (
     <>
       <Content />
@@ -8,4 +8,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default ReadTerms;

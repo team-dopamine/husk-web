@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, ContentWrapper, Title, PreviousButton, NextButton, ButtonGroup } from './index.style';
 import EmailVerify from '@components/sign-up/email-verify';
+import NavigationButtons from '@components/button';
 
-const Content = () => {
+const EmailContent = () => {
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [isVerified, setIsVerified] = useState(false);
@@ -35,17 +36,20 @@ const Content = () => {
             }
           }}
         />
-        <ButtonGroup>
-          <PreviousButton type="primary" href="/sign-in">
-            Previous
-          </PreviousButton>
-          <NextButton type="button" onClick={handleNextClick} disabled={!isVerified}>
-            Next
-          </NextButton>
-        </ButtonGroup>
+        <NavigationButtons
+          previousButton={{
+            label: 'Previous',
+            href: '/read-terms',
+          }}
+          nextButton={{
+            label: 'Next',
+            onClick: handleNextClick,
+            disabled: !isVerified,
+          }}
+        />
       </ContentWrapper>
     </Container>
   );
 };
 
-export default Content;
+export default EmailContent;

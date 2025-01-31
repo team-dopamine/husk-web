@@ -6,3 +6,9 @@ export const Layout = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+export const Title = styled.h1`
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 48px;
+  text-align: center;
+`;

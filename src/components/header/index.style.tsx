@@ -23,9 +23,17 @@ export const LogoWrapper = styled.div`
   gap: 20px;
 `;
 
-export const Logo = styled.div`
+export const Logo = styled.a`
+  text-decoration: none;
   font-size: 28px;
   font-weight: 600;
+  color: black;
+
+  &:hover,
+  &:visited,
+  &:active {
+    color: black;
+  }
 `;
 
 export const LogoImg = styled.div`

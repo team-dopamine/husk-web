@@ -1,22 +1,9 @@
 import { useEffect, useState } from 'react';
-import {
-  Label,
-  HiddenCheckbox,
-  StyledCheckbox,
-  Container,
-  ContentWrapper,
-  Title,
-  ButtonGroup,
-  PreviousButton,
-  NextButton,
-  TermsWrapper,
-  TermsTextarea,
-  AgreementCheckboxWrapper,
-  AgreementText,
-} from './index.style';
+import { Label, HiddenCheckbox, StyledCheckbox, Container, ContentWrapper, Title, TermsWrapper, TermsTextarea, AgreementCheckboxWrapper, AgreementText } from './index.style';
 import getTermsOfService from 'api/read-terms';
+import NavigationButtons from '@components/button';
 
-const ReadTermsContent = () => {
+const Content = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [termsContent, setTermsContent] = useState('약관을 불러오는 중입니다...');
   const [error, setError] = useState<string | null>(null);
@@ -35,6 +22,17 @@ const ReadTermsContent = () => {
     fetchTerms();
   }, []);
 
+  const previousButtonConfig = {
+    label: 'Previous',
+    href: '/sign-in',
+  };
+
+  const nextButtonConfig = {
+    label: 'Next',
+    href: '/sign-up',
+    disabled: !isChecked,
+  };
+
   return (
     <Container>
       <ContentWrapper>
@@ -48,17 +46,10 @@ const ReadTermsContent = () => {
             <StyledCheckbox htmlFor="customCheckbox" />
           </AgreementCheckboxWrapper>
         </TermsWrapper>
-        <ButtonGroup>
-          <PreviousButton type="primary" href="/sign-in">
-            Previous
-          </PreviousButton>
-          <NextButton type="primary" disabled={!isChecked} href="/sign-up">
-            Next
-          </NextButton>
-        </ButtonGroup>
+        <NavigationButtons previousButton={previousButtonConfig} nextButton={nextButtonConfig} />
       </ContentWrapper>
     </Container>
   );
 };
 
-export default ReadTermsContent;
+export default Content;

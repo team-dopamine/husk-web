@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 import Content from './content';
-import GoogleCallback from './google';
+import GoogleCallback from './sign-in-google';
 
 const SignIn = () => {
   const [searchParams] = useSearchParams();

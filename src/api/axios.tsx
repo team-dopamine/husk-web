@@ -9,10 +9,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// 요청 인터셉터 설정
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig => {
     console.log('요청 인터셉터 실행');
+
+    const accessToken = localStorage.getItem('accessToken');
+
+    if (accessToken) {
+      config.headers.Authorization = `Bearer ${accessToken}`;
+    }
     return config;
   },
   (error: AxiosError): Promise<AxiosError> => Promise.reject(error)
@@ -21,7 +26,6 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => response,
   (error: AxiosError<ApiErrorResponse>): Promise<AxiosError> => {
-    // 응답 에러 처리
     const errorMessage = error.response?.data?.message;
     if (error.response?.status === 401 && errorMessage === '토큰이 만료되었습니다') {
       console.warn('인증 실패. 로그아웃 처리.');

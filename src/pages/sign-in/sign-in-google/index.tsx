@@ -1,24 +1,27 @@
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from 'api/context/auth-context';
 import getGoogle from 'api/sign-in/google';
 
 const Google = () => {
   const [searchParams] = useSearchParams();
   const [googleStatus, setGoogleStatus] = useState<number | null>(null);
+  const { login } = useContext(AuthContext)!;
   const navigate = useNavigate();
 
   const code = searchParams.get('code');
-  console.log('Google OAuth Code:', code);
 
   useEffect(() => {
     const fetchGoogleAuth = async () => {
       try {
-        const status = await getGoogle(code);
-        console.log('서버 응답 상태 코드:', status);
-        console.log(googleStatus);
+        const response = await getGoogle(code);
+        const status = response.statusCodeValue;
         setGoogleStatus(status);
         if (status == 200) {
-          navigate('/');
+          if (response.body.jwtTokenDto.accessToken) {
+            login(response.body.jwtTokenDto.accessToken);
+            navigate('/');
+          }
         } else if (status == 400) {
           navigate('/sign-in');
         }
@@ -28,7 +31,7 @@ const Google = () => {
     };
 
     fetchGoogleAuth();
-  }, [navigate]);
+  }, [code, navigate]);
 
   return <p>Google 로그인 처리 중...</p>;
 };

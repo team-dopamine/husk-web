@@ -5,7 +5,23 @@ interface ErrorResponse {
   message: string;
 }
 
-const getGoogle = async (code: string | null): Promise<number> => {
+interface JwtTokenDto {
+  accessToken: string;
+  grantType: string;
+  refreshToken: string;
+}
+
+interface GoogleAuthResponse {
+  headers: Record<string, unknown>;
+  body: {
+    message: string;
+    jwtTokenDto: JwtTokenDto;
+  };
+  statusCode: string;
+  statusCodeValue: number;
+}
+
+const getGoogle = async (code: string | null): Promise<GoogleAuthResponse> => {
   try {
     const response = await api.get(`/auth/sign-in?type=google&code=${code}`);
     return response.data;

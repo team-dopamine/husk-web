@@ -6,8 +6,8 @@ interface ErrorResponse {
 }
 
 interface JwtTokenDto {
-  grantType: string;
   accessToken: string;
+  grantType: string;
   refreshToken: string;
 }
 

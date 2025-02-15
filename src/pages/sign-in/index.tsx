@@ -6,7 +6,6 @@ import GithubCallback from './sign-in-github';
 const SignIn = () => {
   const [searchParams] = useSearchParams();
   const type = searchParams.get('type');
-  console.log(type);
 
   if (type === 'google') return <GoogleCallback />;
   if (type === 'github') return <GithubCallback />;

@@ -7,6 +7,7 @@ import SignIn from '@pages/sign-in';
 import SignUp from '@pages/sign-up';
 import ReadTerms from '@pages/sign-up/content/read-terms';
 import Password from '@pages/sign-up/content/password';
+import ResetPassword from '@pages/reset-password';
 import Frame from '@components/frame';
 import AuthSignIn from '@pages/sign-in/sign-in-email';
 import { AuthProvider } from 'api/context/auth-provider';
@@ -25,6 +26,7 @@ const App: React.FC = () => {
               <Route path="auth-sign-in" element={<AuthSignIn />} />
               <Route path="sign-up" element={<SignUp />} />
               <Route path="password" element={<Password />} />
+              <Route path="reset-password" element={<ResetPassword />} />
               <Route path="read-terms" element={<ReadTerms />} />
             </Route>
           </Routes>

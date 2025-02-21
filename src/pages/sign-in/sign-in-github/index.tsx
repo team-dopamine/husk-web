@@ -18,16 +18,19 @@ const Github = () => {
         const response = await getGithub(code);
         const status = response.statusCodeValue;
         setGithubStatus(status);
-        if (status == 200) {
-          if (response.body.jwtTokenDto.accessToken) {
-            login(response.body.jwtTokenDto.accessToken);
+
+        if (status === 200) {
+          const { accessToken, refreshToken } = response.body.jwtTokenDto;
+          if (accessToken && refreshToken) {
+            login(accessToken, refreshToken);
             navigate('/');
           }
-        } else if (status == 400) {
+        } else if (status === 400) {
           navigate('/sign-in');
         }
       } catch (err) {
         console.error('Github 로그인 오류:', err);
+        navigate('/sign-in');
       }
     };
 

@@ -17,9 +17,10 @@ const Google = () => {
         const response = await getGoogle(code);
         const status = response.statusCodeValue;
         setGoogleStatus(status);
-        if (status == 200) {
-          if (response.body.jwtTokenDto.accessToken) {
-            login(response.body.jwtTokenDto.accessToken);
+        if (status === 200) {
+          const { accessToken, refreshToken } = response.body.jwtTokenDto;
+          if (accessToken && refreshToken) {
+            login(accessToken, refreshToken);
             navigate('/');
           }
         } else if (status == 400) {

@@ -16,8 +16,11 @@ const SigninContent: React.FC = () => {
     try {
       setLoading(true);
       const response = await postSignIn({ email, password });
-      if (response.jwtTokenDto.accessToken) {
-        login(response.jwtTokenDto.accessToken);
+
+      if (response.jwtTokenDto.accessToken && response.jwtTokenDto.refreshToken) {
+        const { accessToken, refreshToken } = response.jwtTokenDto;
+
+        login(accessToken, refreshToken);
         navigate('/');
       }
     } catch (error) {

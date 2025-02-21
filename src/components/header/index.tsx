@@ -1,28 +1,41 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton } from './index.style';
+import postSignOut from 'api/sign-out';
+import { AuthContext } from 'api/context/auth-context';
 
 interface HeaderProps {
   logoHref?: string;
-  loginButtonHref?: string;
-  loginButtonText?: string;
-  isLoggedIn?: boolean;
-  onLogout?: () => void;
+  goToLoginPage?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ logoHref = '/', loginButtonHref = '/sign-in', loginButtonText = 'Login', isLoggedIn, onLogout }) => {
+const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-in' }) => {
+  const { isLoggedIn, logout, accessToken, refreshToken } = useContext(AuthContext)!;
+
+  const handleLogout = async () => {
+    if (!accessToken || !refreshToken) {
+      console.error('로그아웃 실패: 토큰이 없습니다.');
+      return;
+    }
+    try {
+      await logout(accessToken, refreshToken);
+    } catch (error) {
+      console.error('로그아웃 오류:', error);
+    }
+  };
   return (
     <HeaderWrapper>
       <LogoWrapper>
         <LogoImg />
         <Logo href={logoHref}>Husk</Logo>
       </LogoWrapper>
+
       {isLoggedIn ? (
-        <LoginButton type="primary" onClick={onLogout}>
+        <LoginButton type="primary" onClick={handleLogout}>
           Logout
         </LoginButton>
       ) : (
-        <LoginButton type="primary" href={loginButtonHref}>
-          {loginButtonText}
+        <LoginButton type="primary" href={goToLoginPage}>
+          Login
         </LoginButton>
       )}
     </HeaderWrapper>

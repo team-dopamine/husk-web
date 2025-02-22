@@ -16,35 +16,16 @@ const Frame = () => {
     setIsLoggedIn(storedLoginState);
   }, []);
 
-  useEffect(() => {
-    const handleStorageChange = () => {
-      const updatedLoginState = localStorage.getItem('isLoggedIn') === 'true';
-      setIsLoggedIn(updatedLoginState);
-    };
-
-    window.addEventListener('storage', handleStorageChange);
-
-    return () => {
-      window.removeEventListener('storage', handleStorageChange);
-    };
-  }, []);
-
   const handleLoginSuccess = () => {
     localStorage.setItem('isLoggedIn', 'true');
     setIsLoggedIn(true);
     navigate('/');
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem('isLoggedIn');
-    setIsLoggedIn(false);
-    navigate('/');
-  };
-  console.log('Frame - handleLoginSuccess:', { handleLoginSuccess });
   return (
     <>
       <Layout>
-        <Header isLoggedIn={isLoggedIn} onLogout={handleLogout} />
+        <Header />
         <Outlet context={{ handleLoginSuccess }} />
         <Footer />
       </Layout>

@@ -28,6 +28,7 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-
       console.error('회원탈퇴 실패: 토큰이 없습니다.');
       return;
     }
+    // TODO: 확인 메시지 추가 예정
     try {
       await withdraw(accessToken);
       handleLogout();

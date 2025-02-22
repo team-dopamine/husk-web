@@ -2,6 +2,7 @@ import { ReactNode, useCallback, useEffect, useState } from 'react';
 import { AuthContext } from 'api/context/auth-context';
 import { getStoredRefreshToken, getStoredToken, removeToken, saveRefreshToken, saveToken } from 'api/context/auth-util';
 import postSignOut from 'api/sign-out';
+import patchWithdraw from 'api/withdraw';
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
@@ -39,5 +40,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [accessToken, refreshToken]);
 
-  return <AuthContext.Provider value={{ accessToken, refreshToken, isLoggedIn: !!accessToken, login, logout }}>{children}</AuthContext.Provider>;
+  const withdraw = useCallback(async () => {
+    if (!accessToken) {
+      console.error('로그아웃 실패: 토큰이 없습니다.');
+      return;
+    }
+    try {
+      await patchWithdraw({ accessToken });
+
+      setAccessToken(null);
+      setRefreshToken(null);
+      removeToken();
+    } catch (error) {}
+  }, [accessToken]);
+
+  return <AuthContext.Provider value={{ accessToken, refreshToken, isLoggedIn: !!accessToken, login, logout, withdraw }}>{children}</AuthContext.Provider>;
 };

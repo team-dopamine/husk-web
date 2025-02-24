@@ -56,3 +56,19 @@ export const LoginButton = styled(Button)`
     border-color: gray !important;
   }
 `;
+
+export const WithdrawButton = styled(Button)`
+  background-color: black !important;
+  opacity: 30% !important;
+  text-decoration: none;
+  margin-left: 10px;
+  &:hover {
+    background-color: white !important;
+    color: gray !important;
+    font-weight: 700;
+    border-color: gray !important;
+  }
+`;
+
+export const AuthBox = styled.div`
+s`;

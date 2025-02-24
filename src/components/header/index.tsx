@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton } from './index.style';
-import postSignOut from 'api/sign-out';
+import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton, WithdrawButton, AuthBox } from './index.style';
 import { AuthContext } from 'api/context/auth-context';
 
 interface HeaderProps {
@@ -9,7 +8,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-in' }) => {
-  const { isLoggedIn, logout, accessToken, refreshToken } = useContext(AuthContext)!;
+  const { isLoggedIn, logout, withdraw, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleLogout = async () => {
     if (!accessToken || !refreshToken) {
@@ -22,6 +21,21 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-
       console.error('로그아웃 오류:', error);
     }
   };
+
+  const handleWithdraw = async () => {
+    if (!isLoggedIn) return;
+    if (!accessToken) {
+      console.error('회원탈퇴 실패: 토큰이 없습니다.');
+      return;
+    }
+    // TODO: 확인 메시지 추가 예정
+    try {
+      await withdraw(accessToken);
+      handleLogout();
+    } catch (error) {
+      console.error('회원탈퇴 오류:', error);
+    }
+  };
   return (
     <HeaderWrapper>
       <LogoWrapper>
@@ -29,15 +43,21 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-
         <Logo href={logoHref}>Husk</Logo>
       </LogoWrapper>
 
-      {isLoggedIn ? (
-        <LoginButton type="primary" onClick={handleLogout}>
-          Logout
-        </LoginButton>
-      ) : (
-        <LoginButton type="primary" href={goToLoginPage}>
-          Login
-        </LoginButton>
-      )}
+      <AuthBox>
+        {isLoggedIn ? (
+          <LoginButton type="primary" onClick={handleLogout}>
+            Logout
+          </LoginButton>
+        ) : (
+          <LoginButton type="primary" href={goToLoginPage}>
+            Login
+          </LoginButton>
+        )}
+        {/* TODO: 추후 위치 변경예정 */}
+        <WithdrawButton type="primary" onClick={handleWithdraw}>
+          탈퇴하기
+        </WithdrawButton>
+      </AuthBox>
     </HeaderWrapper>
   );
 };

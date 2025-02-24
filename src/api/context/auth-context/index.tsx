@@ -6,6 +6,7 @@ interface AuthContextType {
   isLoggedIn: boolean;
   login: (token: string, refreshToken: string) => void;
   logout: (token: string, refreshToken: string) => void;
+  withdraw: (token: string) => void;
 }
 
 export const AuthContext = createContext<AuthContextType | undefined>(undefined);

@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { EmailWrapper, FormContainer, Label, InputField, RequestCodeButton, VerifyWrapper, VerifyButton, Timer, EmailFieldWrapper, Message } from './index.style';
 import postSendCode from 'api/send-code';
 import postVerifyCode from 'api/verify-code';
+import postResetPasswordVerify from 'api/reset-password';
 
 interface EmailVerifyProps {
   onInputChange: (email: string, code: string) => void;
@@ -14,7 +16,9 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
   const [timer, setTimer] = useState(300);
   const [alertShown, setAlertShown] = useState(false);
   const [emailDisabled, setEmailDisabled] = useState(false);
+  const [passwordDisabled, setPasswordDisabled] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
+  const { pathname } = useLocation(); // 현재 페이지 경로 가져오기
 
   useEffect(() => {
     const savedTimer = sessionStorage.getItem('timer');
@@ -54,13 +58,20 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
         alert('이메일을 입력해주세요.');
         return;
       }
+      const api = pathname.includes('reset-password') ? postResetPasswordVerify : postSendCode;
 
-      await postSendCode({ email, code: '' });
+      await api({ email, code: '' });
 
-      setShowCodeVerify(true);
-      setTimer(300);
+      if (api === postSendCode) {
+        setShowCodeVerify(true);
+        setTimer(300);
+        setEmailDisabled(true);
+      } else {
+        setIsVerified(true);
+        onInputChange(email, '');
+        setPasswordDisabled(true);
+      }
       setAlertShown(false);
-      setEmailDisabled(true);
     } catch (error) {
       console.error('인증 코드 요청 중 오류 발생:', error);
       setShowCodeVerify(false);
@@ -113,6 +124,7 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
           </RequestCodeButton>
         </EmailFieldWrapper>
         {emailDisabled && <Message>Send the Verify Code</Message>}
+        {passwordDisabled && <Message>Send the temporary password</Message>}
       </EmailWrapper>
 
       {showCodeVerify && (

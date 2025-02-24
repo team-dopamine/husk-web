@@ -7,7 +7,11 @@ import EmailVerify from '@components/sign-up/email-verify';
 const Content = () => {
   const [isVerified, setIsVerified] = useState(false);
   const [email, setEmail] = useState('');
+  const [passwordVerify, setPasswordVerify] = useState('');
+  const [password, setPassword] = useState('');
+
   const navigate = useNavigate();
+  const isPasswordMismatch = password.trim() === '' || passwordVerify.trim() === '' || password !== passwordVerify;
 
   const handleNextClick = () => {
     if (isVerified) {
@@ -19,6 +23,22 @@ const Content = () => {
     setEmail(email);
   };
 
+  const previousButtonConfig = {
+    label: 'Home',
+    href: '/',
+  };
+
+  const nextButtonConfig = {
+    label: 'Login',
+    href: '/sign-in',
+    onClick: handleNextClick,
+    disabled: !isVerified,
+  };
+
+  const handleVerifySuccess = () => {
+    setIsVerified(true);
+  };
+
   return (
     <Container>
       <ContentWrapper>
@@ -27,21 +47,11 @@ const Content = () => {
           <EmailVerify
             onInputChange={(email, code) => {
               handleInputChange(email, code);
+              if (email) handleVerifySuccess();
             }}
           />
-          <Message>해당 메일 주소로 임시 비밀번호가 전송됐습니다.</Message>
         </PasswordWrapper>
-        <NavigationButtons
-          previousButton={{
-            label: 'Home',
-            href: '/',
-          }}
-          nextButton={{
-            label: 'Login',
-            onClick: handleNextClick,
-            disabled: !isVerified,
-          }}
-        />
+        <NavigationButtons previousButton={previousButtonConfig} nextButton={nextButtonConfig} />
       </ContentWrapper>
     </Container>
   );

@@ -10,7 +10,10 @@ import Password from '@pages/sign-up/content/password';
 import ResetPassword from '@pages/reset-password';
 import Frame from '@components/frame';
 import AuthSignIn from '@pages/sign-in/sign-in-email';
+// import TempUpdatePassword from '@pages/temp-update-password';
 import { AuthProvider } from 'api/context/auth-provider';
+import TempUpdatePasswordConfirm from '@pages/temp-update-password/confirm';
+import TempUpdatePasswordSetting from '@pages/temp-update-password/setting';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
@@ -28,6 +31,8 @@ const App: React.FC = () => {
               <Route path="password" element={<Password />} />
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="read-terms" element={<ReadTerms />} />
+              <Route path="temp-update-password-confirm" element={<TempUpdatePasswordConfirm />} />
+              <Route path="temp-update-password-setting" element={<TempUpdatePasswordSetting />} />|
             </Route>
           </Routes>
         </BrowserRouter>

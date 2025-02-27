@@ -47,3 +47,13 @@ export const SubmitButton = styled(Button)`
     pointer-events: none;
   `}
 `;
+
+export const ErrorText = styled.p`
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  display: flex;
+  text-align: left;
+  margin-bottom: 5px;
+  color: red;
+`;

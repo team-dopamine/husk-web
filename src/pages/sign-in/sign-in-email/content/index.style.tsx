@@ -82,3 +82,18 @@ export const InputField = styled(Input)`
     }
   }
 `;
+
+export const ResetPasswordText = styled.p`
+  color: #666;
+  font-size: 14px;
+`;
+
+export const ResetPasswordLink = styled.a`
+  color: #0066ff;
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;

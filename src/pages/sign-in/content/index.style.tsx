@@ -53,7 +53,7 @@ export const OAuthButton = styled.button`
 
 export const SignUpWrapper = styled.div`
   margin-top: 32px;
-  text-align: center;
+  text-align: left;
 `;
 
 export const SignUpText = styled.p`

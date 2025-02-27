@@ -14,6 +14,7 @@ const TempUpdatePasswordConfirm: React.FC = () => {
       return;
     }
 
+    setLoading(true);
     try {
       await postPasswordVerify({ currentPassword });
       navigate('/temp-update-password-setting');

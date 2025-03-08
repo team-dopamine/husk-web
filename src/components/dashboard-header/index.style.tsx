@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from 'antd';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -43,17 +44,33 @@ export const LogoImg = styled.div`
   opacity: 10%;
 `;
 
-export const UserActionButtons = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 40px;
+export const UserActionButtons = styled.div``;
+
+export const EditProfileButton = styled(Button)`
+  background-color: black !important;
+  opacity: 50% !important;
+  text-decoration: none;
+  color: white;
+
+  &:hover {
+    background-color: white !important;
+    color: gray !important;
+    font-weight: 700;
+    border-color: gray !important;
+  }
 `;
 
-export const ActionButton = styled.a`
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-  padding: 0px;
+export const LogoutButton = styled(Button)`
+  background-color: black !important;
+  opacity: 30% !important;
+  text-decoration: none;
+  margin-left: 10px;
+  color: white;
+
+  &:hover {
+    background-color: white !important;
+    color: gray !important;
+    font-weight: 700;
+    border-color: gray !important;
+  }
 `;

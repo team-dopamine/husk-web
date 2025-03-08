@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { AuthContext } from 'api/context/auth-context';
-import { HeaderWrapper, LogoWrapper, LogoImg, Logo, UserActionButtons, ActionButton } from './index.style';
+import { HeaderWrapper, LogoWrapper, LogoImg, Logo, UserActionButtons, EditProfileButton, LogoutButton } from './index.style';
 
 const DashboardHeader: React.FC = () => {
   const { logout, accessToken, refreshToken } = useContext(AuthContext)!;
@@ -23,8 +23,8 @@ const DashboardHeader: React.FC = () => {
         <Logo href="/">Termius App</Logo>
       </LogoWrapper>
       <UserActionButtons>
-        <ActionButton href="#">정보수정</ActionButton>
-        <ActionButton onClick={handleLogout}>Logout</ActionButton>
+        <EditProfileButton href="#">정보수정</EditProfileButton>
+        <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       </UserActionButtons>
     </HeaderWrapper>
   );

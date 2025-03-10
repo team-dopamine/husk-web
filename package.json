@@ -14,6 +14,7 @@
     "@types/react-dom": "^18.3.1",
     "antd": "^5.22.2",
     "axios": "^1.7.9",
+    "lucide-react": "^0.477.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",

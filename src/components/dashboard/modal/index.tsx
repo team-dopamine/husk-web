@@ -1,14 +1,23 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import ButtonGroup from '../button';
 import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../assets/CloseIcon.svg';
 
-type ModalProps = {
+const useModal = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = useCallback(() => setIsOpen(true), []);
+  const closeModal = useCallback(() => setIsOpen(false), []);
+
+  return { isOpen, openModal, closeModal };
+};
+
+interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   fields: { label: string; placeholder: string }[];
-};
+}
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
   if (!isOpen) return null;
@@ -37,4 +46,6 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
   );
 };
 
+export { useModal };
+export type { ModalProps };
 export default Modal;

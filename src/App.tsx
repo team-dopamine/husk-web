@@ -15,6 +15,7 @@ import { AuthProvider } from 'api/context/auth-provider';
 import TempUpdatePasswordConfirm from '@pages/temp-update-password/verify';
 import TempUpdatePasswordSetting from '@pages/temp-update-password/setting';
 import DashboardFrame from '@components/dashboard-frame';
+import TestPage from '@pages/test';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
@@ -33,7 +34,8 @@ const App: React.FC = () => {
               <Route path="reset-password" element={<ResetPassword />} />
               <Route path="read-terms" element={<ReadTerms />} />
               <Route path="temp-update-password-confirm" element={<TempUpdatePasswordConfirm />} />
-              <Route path="temp-update-password-setting" element={<TempUpdatePasswordSetting />} />|
+              <Route path="temp-update-password-setting" element={<TempUpdatePasswordSetting />} />
+              <Route path="test-page" element={<TestPage />} />
             </Route>
             <Route path="/dashboard" element={<DashboardFrame />}>
               <Route index element={<Dashboard />} />

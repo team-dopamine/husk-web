@@ -1,5 +1,6 @@
 import postKeychain from 'api/keychains/register-keychain';
 import { Container, ActionButton, Divider } from './index.style';
+import { getStoredToken } from 'api/context/auth-util';
 
 type ButtonGroupProps = {
   inputValues: string[];
@@ -7,6 +8,13 @@ type ButtonGroupProps = {
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues }) => {
   const handleSave = async () => {
+    const accessToken = getStoredToken();
+
+    if (!accessToken) {
+      alert('로그인이 필요합니다.');
+      return;
+    }
+
     try {
       const trimmedValues = inputValues.map((value) => value.trim());
 
@@ -18,7 +26,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues }) => {
       await postKeychain({
         name: inputValues[0],
         content: inputValues[1],
-        accessToken: 'your_token_here',
+        accessToken,
       });
     } catch (error) {
       console.error('Error posting data:', error);

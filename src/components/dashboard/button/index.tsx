@@ -1,4 +1,4 @@
-import postKeychain from 'api/keychains/register-keychain';
+import postKeychain from 'api/keychains/keychain-register';
 import { Container, ActionButton, Divider } from './index.style';
 import { getStoredToken } from 'api/context/auth-util';
 

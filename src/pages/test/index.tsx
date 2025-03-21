@@ -5,7 +5,7 @@ import getKeychain from 'api/keychains/keychain-read';
 import { useEffect, useState } from 'react';
 
 interface KeychainResponse {
-  id: number;
+  id?: number;
   name: string;
 }
 
@@ -49,7 +49,7 @@ const TestPage = () => {
         <button
           key={item.id}
           onClick={() => {
-            setSelectedId(item.id);
+            setSelectedId(item.id ?? null);
             setIsReadModalOpen(true);
           }}
         >
@@ -64,6 +64,7 @@ const TestPage = () => {
           { label: 'Name', placeholder: selectedData?.name || '데이터 없음' },
           { label: 'Private Key (Contents)', placeholder: `*********` },
         ]}
+        id={selectedId ?? undefined}
       />
     </div>
   );

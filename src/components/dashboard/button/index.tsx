@@ -1,12 +1,14 @@
 import postKeychain from 'api/keychains/keychain-register';
 import { Container, ActionButton, Divider } from './index.style';
 import { getStoredToken } from 'api/context/auth-util';
+import patchKeyChainDelete from 'api/keychains/keychain-delete';
 
 type ButtonGroupProps = {
   inputValues: string[];
+  id?: number;
 };
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues, id }) => {
   const handleSave = async () => {
     const accessToken = getStoredToken();
 
@@ -34,11 +36,24 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues }) => {
     }
   };
 
+  const handleDelete = async () => {
+    if (!id) {
+      alert('삭제할 키체인을 찾을 수 없습니다.');
+      return;
+    }
+    try {
+      await patchKeyChainDelete(id);
+    } catch (error) {
+      console.error('Error posting data:', error);
+      alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');
+    }
+  };
+
   return (
     <Container>
       <ActionButton onClick={handleSave}>Save</ActionButton>
       <Divider />
-      <ActionButton>Delete</ActionButton>
+      <ActionButton onClick={handleDelete}>Delete</ActionButton>
     </Container>
   );
 };

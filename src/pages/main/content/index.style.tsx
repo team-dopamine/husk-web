@@ -62,6 +62,7 @@ export const StartButton = styled(ButtonStyle)`
   color: white;
   background-color: black;
   border: 1px solid black;
+  text-decoration: none;
 `;
 
 export const MainContent = styled.div`

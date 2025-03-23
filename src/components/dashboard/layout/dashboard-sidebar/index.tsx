@@ -9,8 +9,8 @@ const Sidebar = () => {
       <SidebarItem onClick={() => navigate('#')}>
         <ButtonImg>🚀</ButtonImg>SSH Connection
       </SidebarItem>
-      <SidebarItem onClick={() => navigate('#')}>
-        <ButtonImg>🔒</ButtonImg>Key Pair
+      <SidebarItem onClick={() => navigate('/dashboard/keychain-page')}>
+        <ButtonImg>🔒</ButtonImg>Keychain
       </SidebarItem>
       <SidebarItem onClick={() => navigate('#')}>
         <ButtonImg>💻</ButtonImg>User Terminal

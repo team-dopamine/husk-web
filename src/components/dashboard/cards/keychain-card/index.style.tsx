@@ -2,19 +2,16 @@ import styled from 'styled-components';
 import { Card } from 'antd';
 import { MoreVertical } from 'lucide-react';
 
-export const CardStyle = styled(Card)`
+export const Container = styled(Card)`
+  width: 335px;
+  height: 140px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  padding-bottom: 16px;
+  background: #fff;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  width: 316px;
-  height: 140px;
-  padding-bottom: 16px;
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #fff;
-`;
-
-export const Container = styled(CardStyle)`
-  cursor: pointer;
   transition: transform 0.2s;
 
   &:hover {
@@ -48,6 +45,6 @@ export const Title = styled.span`
 
 export const MoreButton = styled(MoreVertical)`
   position: relative;
-  top: -25px; /* 아이콘을 조금 위로 이동 */
+  top: -25px;
   left: 20px;
 `;

@@ -1,8 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import ButtonGroup from '../button';
-import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
-import { ReactComponent as CloseIcon } from '../../../assets/CloseIcon.svg';
+import { Label, ModalContent, Overlay, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
+import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,12 +16,13 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   fields: { label: string; placeholder: string }[];
+  id?: number;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
+const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id }) => {
   if (!isOpen) return null;
 
-  const [inputValues, setInputValues] = useState<string[]>(fields.map(() => ''));
+  const [inputValues, setInputValues] = useState<string[]>(fields.map((f) => f.placeholder));
 
   const handleInputChange = (index: number, value: string) => {
     setInputValues((prev) => {
@@ -43,14 +43,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
           {fields.map((field, index) => (
             <InputContainer key={index}>
               <Label>{field.label}</Label>
-              <InputField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} />
+              <InputField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} readOnly />
             </InputContainer>
           ))}
         </InputWrapper>
-
-        <ButtonWrapper>
-          <ButtonGroup inputValues={inputValues} />
-        </ButtonWrapper>
       </ModalContent>
     </Overlay>,
     document.body
@@ -59,4 +55,4 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
 
 export { useModal };
 export type { ModalProps };
-export default Modal;
+export default KeychainReadModal;

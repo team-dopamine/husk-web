@@ -8,7 +8,7 @@ type CardProps = {
   className?: string;
 };
 
-const Card: React.FC<CardProps> = ({ title, label, onClick, className = '' }) => {
+const KeychainCard: React.FC<CardProps> = ({ title, label, onClick, className = '' }) => {
   return (
     <Container className={className} onClick={onClick}>
       <ContentWrapper>
@@ -22,4 +22,4 @@ const Card: React.FC<CardProps> = ({ title, label, onClick, className = '' }) =>
   );
 };
 
-export default Card;
+export default KeychainCard;

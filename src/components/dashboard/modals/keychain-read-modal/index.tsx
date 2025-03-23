@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { Label, ModalContent, Overlay, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
+import ButtonGroup from '../../button';
 
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +48,7 @@ const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id }
             </InputContainer>
           ))}
         </InputWrapper>
+        <ButtonGroup inputValues={inputValues} id={id} />
       </ModalContent>
     </Overlay>,
     document.body

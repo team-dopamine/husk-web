@@ -59,4 +59,4 @@ jobs:
             sudo docker system prune -af
             sudo docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
             sudo docker pull teamdopamine/husk-web:latest
-            sudo docker run -d --name husk-web -p 80:3000 teamdopamine/husk-web:latest
+            sudo docker run -d --name husk-web -p 3000:80 teamdopamine/husk-web:latest

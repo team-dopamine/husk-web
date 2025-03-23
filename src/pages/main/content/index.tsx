@@ -7,7 +7,9 @@ const Content = () => (
       <Description>HUSK는 웹 기반 터미널 서비스입니다. 사용자들은 터미널을 통해 다양한 기능을 사용할 수 있습니다.</Description>
       <ButtonContainer>
         <FunctionButton type="primary">기능 소개</FunctionButton>
-        <StartButton type="primary">시작하기</StartButton>
+        <StartButton type="primary" href="/dashboard">
+          시작하기
+        </StartButton>
       </ButtonContainer>
     </Banner>
 

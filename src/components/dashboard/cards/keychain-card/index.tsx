@@ -13,7 +13,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, onClick, className = 
     <Container className={className} onClick={onClick}>
       <ContentWrapper>
         <Content>
-          {label && <Title>Type {label}</Title>}
+          {label && <Title>{label}</Title>}
           {title && <Label>{title}</Label>}
         </Content>
         <MoreButton size={33} color="#333" />

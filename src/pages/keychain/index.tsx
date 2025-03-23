@@ -37,7 +37,7 @@ const KeychainPage = () => {
         <Card
           key={item.id}
           title={`${item.name}`}
-          label={`TSP`}
+          label={`Type PEM`}
           onClick={() => {
             setSelectedId(item.id ?? null);
             setIsReadModalOpen(true);

@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import ReactDOM from 'react-dom';
-import ButtonGroup from '../../button';
 import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
+import SaveButton from '@components/dashboard/button/saveButton';
 
 const useModal = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,7 +53,7 @@ const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
         </InputWrapper>
 
         <ButtonWrapper>
-          <ButtonGroup inputValues={inputValues} />
+          <SaveButton inputValues={inputValues} />
         </ButtonWrapper>
       </ModalContent>
     </Overlay>,

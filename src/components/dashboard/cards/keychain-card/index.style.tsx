@@ -13,10 +13,6 @@ export const Container = styled(Card)`
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 `;
 
 export const ContentWrapper = styled.div`
@@ -47,4 +43,7 @@ export const MoreButton = styled(MoreVertical)`
   position: relative;
   top: -25px;
   left: 20px;
+  &:hover {
+    transform: scale(1.07);
+  }
 `;

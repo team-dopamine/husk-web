@@ -1,26 +1,14 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Label, ModalContent, Overlay, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
+import { ModalContent, Overlay, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 import ButtonGroup from '../../button';
+import InputGroup from './inputGroup';
+import useModal from '../../../../hooks/useModal';
+import { ModalProps } from './types';
+import { handleKeychainDelete, handleKeychainSave } from './handlers';
 
-const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = useCallback(() => setIsOpen(true), []);
-  const closeModal = useCallback(() => setIsOpen(false), []);
-
-  return { isOpen, openModal, closeModal };
-};
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  fields: { label: string; placeholder: string }[];
-  id?: number;
-}
-
-const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id }) => {
+const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id, onSuccess }) => {
   if (!isOpen) return null;
 
   const [inputValues, setInputValues] = useState<string[]>(fields.map((f) => f.placeholder));
@@ -33,22 +21,17 @@ const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id }
     });
   };
 
+  const handleSave = () => handleKeychainSave({ id, inputValues, onClose, onSuccess });
+  const handleDelete = () => handleKeychainDelete({ id, onClose, onSuccess });
+
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()} style={{ margin: '24px' }}>
         <CloseButton onClick={onClose}>
           <CloseIcon />
         </CloseButton>
-
-        <InputWrapper>
-          {fields.map((field, index) => (
-            <InputContainer key={index}>
-              <Label>{field.label}</Label>
-              <InputField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} readOnly />
-            </InputContainer>
-          ))}
-        </InputWrapper>
-        <ButtonGroup inputValues={inputValues} id={id} />
+        <InputGroup fields={fields} inputValues={inputValues} onChange={handleInputChange} />
+        <ButtonGroup inputValues={inputValues} id={id} onSave={handleSave} onDelete={handleDelete} />
       </ModalContent>
     </Overlay>,
     document.body

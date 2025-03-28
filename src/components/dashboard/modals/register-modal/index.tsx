@@ -1,23 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import ButtonGroup from '../../button';
 import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
-
-const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = useCallback(() => setIsOpen(true), []);
-  const closeModal = useCallback(() => setIsOpen(false), []);
-
-  return { isOpen, openModal, closeModal };
-};
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  fields: { label: string; placeholder: string }[];
-}
+import SaveButton from '@components/dashboard/button/saveButton';
+import useModal from '../../../../hooks/useModal';
+import { ModalProps } from './types';
 
 const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
   if (!isOpen) return null;
@@ -53,7 +40,7 @@ const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
         </InputWrapper>
 
         <ButtonWrapper>
-          <ButtonGroup inputValues={inputValues} />
+          <SaveButton inputValues={inputValues} />
         </ButtonWrapper>
       </ModalContent>
     </Overlay>,

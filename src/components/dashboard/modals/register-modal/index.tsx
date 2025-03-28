@@ -1,23 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 import SaveButton from '@components/dashboard/button/saveButton';
-
-const useModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const openModal = useCallback(() => setIsOpen(true), []);
-  const closeModal = useCallback(() => setIsOpen(false), []);
-
-  return { isOpen, openModal, closeModal };
-};
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  fields: { label: string; placeholder: string }[];
-}
+import useModal from '../../../../hooks/useModal';
+import { ModalProps } from './types';
 
 const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
   if (!isOpen) return null;

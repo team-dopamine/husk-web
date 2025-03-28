@@ -1,6 +1,4 @@
 import { Container, ActionButton, Divider } from './index.style';
-// import patchKeyChainDelete from 'api/keychains/keychain-delete';
-// import patchKeyChainUpdate from 'api/keychains/keychain-update';
 
 type ButtonGroupProps = {
   inputValues: string[];
@@ -9,7 +7,7 @@ type ButtonGroupProps = {
   onDelete: () => void;
 };
 
-const ButtonGroup: React.FC<ButtonGroupProps> = ({ inputValues, id, onSave, onDelete }) => {
+const ButtonGroup: React.FC<ButtonGroupProps> = ({ onSave, onDelete }) => {
   return (
     <Container>
       <ActionButton onClick={onSave}>update</ActionButton>

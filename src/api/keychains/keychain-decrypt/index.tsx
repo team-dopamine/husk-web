@@ -11,7 +11,7 @@ interface ErrorResponse {
   message?: string;
 }
 
-const getKeychainDecrypt = async (seletedData: any): Promise<KeychainResponse> => {
+const getKeychainDecrypt = async (seletedData): Promise<KeychainResponse> => {
   try {
     const response = await api.get(`keychains/${seletedData}/decrypt`, {
       headers: { 'Content-Type': 'application/json' },

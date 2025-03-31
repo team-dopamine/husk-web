@@ -10,7 +10,7 @@ type ButtonGroupProps = {
 const ButtonGroup: React.FC<ButtonGroupProps> = ({ onSave, onDelete }) => {
   return (
     <Container>
-      <ActionButton onClick={onSave}>update</ActionButton>
+      <ActionButton onClick={onSave}>Update</ActionButton>
       <Divider />
       <ActionButton onClick={onDelete}>Delete</ActionButton>
     </Container>

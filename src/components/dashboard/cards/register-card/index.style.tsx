@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card } from 'antd';
 
 export const CardStyle = styled(Card).attrs({
-  bodyStyle: { padding: '0px' },
+  styles: { body: { padding: 0 } },
 })`
   display: flex;
   flex-direction: column;

@@ -94,3 +94,11 @@ export const CloseButton = styled.button`
     opacity: 0.7;
   }
 `;
+
+export const KeychainCheckboxLabel = styled.label`
+  margin-bottom: 10px;
+`;
+
+export const KeychainCheckbox = styled.input`
+  margin-right: 8px;
+`;

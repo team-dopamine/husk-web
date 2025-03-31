@@ -42,6 +42,7 @@ const KeychainPage = () => {
       {responseData.map((item) => {
         return (
           <KeychainCard
+            key={item.id}
             id={item.id}
             title={`${item.name}`}
             label={`Type PEM`}
@@ -73,8 +74,12 @@ const KeychainPage = () => {
           onClose={() => setIsReadModalOpen(false)}
           onSuccess={fetchKeychain}
           fields={[
-            { label: 'Name', placeholder: selectedData.name },
-            { label: 'Private Key (Contents)', placeholder: selectedData.content },
+            { label: 'Name', placeholder: selectedData.name, type: 'text' },
+            {
+              label: 'Private Key (Contents)',
+              placeholder: selectedData.content,
+              type: 'password',
+            },
           ]}
           id={selectedData?.id}
         />

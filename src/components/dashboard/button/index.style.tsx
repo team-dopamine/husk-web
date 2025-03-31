@@ -9,6 +9,7 @@ export const Container = styled.div`
   background-color: #222;
   border-radius: 20px;
   padding: 10px 20px;
+  margin: auto;
 `;
 
 export const ButtonStyle = styled(Button)`

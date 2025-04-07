@@ -1,34 +1,28 @@
-import getSshConnections from 'api/ssh-connections';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import getSshConnections, { SshConnection } from 'api/ssh-connections';
 import { SshConnectionContainer } from './index.style';
 import KeychainCard from '@components/dashboard/cards/keychain-card';
 
-interface SshResponse {
-  id: number;
-  name: string;
-  host: string;
-  port: string;
-}
-
 const SshConnectionPage = () => {
-  const [sshData, setSshData] = useState<SshResponse[]>([]);
-  const fetchSshConnections = useCallback(async () => {
-    try {
-      const response = await getSshConnections();
-      setSshData(response);
-    } catch (error) {
-      console.error('SSH 연결 목록을 불러오는 중 오류 발생: ', error);
-    }
-  }, []);
+  const [sshConnections, setSshConnections] = useState<SshConnection[]>([]);
 
   useEffect(() => {
-    fetchSshConnections();
-  }, [fetchSshConnections]);
+    const fetchData = async () => {
+      try {
+        const data = await getSshConnections();
+        setSshConnections(data);
+      } catch (error) {
+        console.error('SSH 연결 목록을 불러오는 중 오류 발생:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
-    <SshConnectionContainer style={{ marginTop: '176px', marginLeft: '280px' }}>
-      {sshData.map((item) => (
-        <KeychainCard key={item.id} id={item.id} title={item.name} label={`${item.host}:${item.port}`} />
+    <SshConnectionContainer>
+      {sshConnections.map(({ id, name, host, port }) => (
+        <KeychainCard key={id} id={id} title={name} label={`${host}:${port}`} />
       ))}
     </SshConnectionContainer>
   );

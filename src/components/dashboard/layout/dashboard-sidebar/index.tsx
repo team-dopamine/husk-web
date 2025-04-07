@@ -6,7 +6,7 @@ const Sidebar = () => {
 
   return (
     <SidebarWrapper>
-      <SidebarItem onClick={() => navigate('#')}>
+      <SidebarItem onClick={() => navigate('/dashboard/sshConnection-page')}>
         <ButtonImg>🚀</ButtonImg>SSH Connection
       </SidebarItem>
       <SidebarItem onClick={() => navigate('/dashboard/keychain-page')}>

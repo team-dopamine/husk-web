@@ -9,10 +9,6 @@ export interface SshConnection {
   port: string;
 }
 
-interface RawResponseData extends SshConnection {
-  accessToken: string;
-}
-
 interface ErrorResponse {
   message: string;
 }
@@ -25,9 +21,14 @@ const getSshConnections = async (): Promise<SshConnection[]> => {
       Authorization: `Bearer ${token}`,
     };
 
-    const { data } = await api.get<RawResponseData[]>('/connections', { headers });
+    const { data } = await api.get<SshConnection[]>('/connections', { headers });
 
-    return data.map(({ id, name, host, port }) => ({ id, name, host, port }));
+    return data.map((item) => ({
+      id: item.id,
+      name: item.name,
+      host: item.host,
+      port: item.port,
+    }));
   } catch (error: unknown) {
     const err = error as AxiosError<ErrorResponse>;
 

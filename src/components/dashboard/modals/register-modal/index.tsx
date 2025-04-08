@@ -40,7 +40,7 @@ const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, fields }) => {
         </InputWrapper>
 
         <ButtonWrapper>
-          <SaveButton inputValues={inputValues} />
+          <SaveButton inputValues={inputValues} onClose={onClose} />
         </ButtonWrapper>
       </ModalContent>
     </Overlay>,

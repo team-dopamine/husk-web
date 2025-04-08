@@ -1,10 +1,10 @@
 import RegisterModal from '@components/dashboard/modals/register-modal';
 import KeychainReadModal from '@components/dashboard/modals/keychain-read-modal';
 import RegisterCard from '@components/dashboard/cards/register-card';
+import KeychainCard from '@components/dashboard/cards/keychain-card';
 import getKeychain from 'api/keychains/keychain-read';
 import { useCallback, useEffect, useState } from 'react';
 import { KeychainContainer } from './index.style';
-import KeychainCard from '@components/dashboard/cards/keychain-card';
 
 interface KeychainResponse {
   id?: number;
@@ -39,20 +39,18 @@ const KeychainPage = () => {
 
   return (
     <KeychainContainer style={{ marginTop: '176px', marginLeft: '280px' }}>
-      {responseData.map((item) => {
-        return (
-          <KeychainCard
-            key={item.id}
-            id={item.id}
-            title={`${item.name}`}
-            label={`Type PEM`}
-            onClick={() => {
-              setSelectedId(item.id ?? null);
-              setIsReadModalOpen(true);
-            }}
-          />
-        );
-      })}
+      {responseData.map((item) => (
+        <KeychainCard
+          key={item.id}
+          id={item.id}
+          title={`Type PEM`}
+          label={item.name}
+          onClick={() => {
+            setSelectedId(item.id ?? null);
+            setIsReadModalOpen(true);
+          }}
+        />
+      ))}
 
       <RegisterCard onClick={() => setIsModalOpen(true)} />
 

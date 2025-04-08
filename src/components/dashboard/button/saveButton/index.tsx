@@ -4,9 +4,10 @@ import { getStoredToken } from 'api/context/auth-util';
 
 type SaveButtonGroupProps = {
   inputValues: string[];
+  onClose: () => void;
 };
 
-const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues }) => {
+const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues, onClose }) => {
   const handleSave = async () => {
     const accessToken = getStoredToken();
 
@@ -28,6 +29,8 @@ const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues }) => {
         content: inputValues[1],
         accessToken,
       });
+
+      onClose();
     } catch (error) {
       console.error('Error posting data:', error);
       alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');

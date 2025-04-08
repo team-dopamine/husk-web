@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from 'api/context/auth-context';
 import { HeaderWrapper, LogoWrapper, LogoImg, Logo, UserActionButtons, EditProfileButton, LogoutButton } from './index.style';
 
 const DashboardHeader: React.FC = () => {
+  const navigate = useNavigate();
   const { logout, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleLogout = async () => {
@@ -12,10 +14,12 @@ const DashboardHeader: React.FC = () => {
     }
     try {
       await logout(accessToken, refreshToken);
+      navigate('/');
     } catch (error) {
       console.error('로그아웃 오류:', error);
     }
   };
+
   return (
     <HeaderWrapper>
       <LogoWrapper>

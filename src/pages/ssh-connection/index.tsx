@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import getSshConnections, { SshConnection } from 'api/ssh-connections';
+import getSshConnections, { SshConnection } from 'api/ssh-connections/ssh-read';
 import { SshConnectionContainer } from './index.style';
 import KeychainCard from '@components/dashboard/cards/keychain-card';
 

@@ -11,7 +11,7 @@ type CardProps = {
   id?: number;
 };
 
-const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id }) => {
+const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, onClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [decryptedContent, setDecryptedContent] = useState('');
 
@@ -41,7 +41,13 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id }
   };
   return (
     <>
-      <Container className={className}>
+      <Container
+        className={className}
+        onClick={() => {
+          console.log('✅ 카드 클릭됨');
+          onClick?.();
+        }}
+      >
         <ContentWrapper>
           <Content>
             {label && <Title>{label}</Title>}

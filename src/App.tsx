@@ -17,6 +17,7 @@ import TempUpdatePasswordSetting from '@pages/temp-update-password/setting';
 import Dashboard from '@pages/dashboard';
 import KeychainPage from '@pages/keychain';
 import SshConnectionPage from '@pages/ssh-connection';
+import TestPage from '@pages/ssh-connection/test-page';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
@@ -41,6 +42,7 @@ const App: React.FC = () => {
               <Route index element={<Dashboard />} />
               <Route path="keychain-page" element={<KeychainPage />} />
               <Route path="sshConnection-page" element={<SshConnectionPage />} />
+              <Route path="test-page" element={<TestPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

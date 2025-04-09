@@ -13,6 +13,7 @@ export const Container = styled(Card)`
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
+  cursor: pointer;
 `;
 
 export const ContentWrapper = styled.div`

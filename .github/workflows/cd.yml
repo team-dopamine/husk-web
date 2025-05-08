@@ -12,7 +12,7 @@ on:
         type: choice
         options:
           - info
-          - warning
+          - warn
           - debug
       tags:
         description: 'Test scenario tags'
@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   develop-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       # 1. Compare branch 코드 내려 받기

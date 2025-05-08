@@ -25,7 +25,7 @@ const SshConnectionPage = () => {
   const handleSshSession = async (id: number) => {
     try {
       await postSshSession(id);
-      navigate('/dashboard/test-page');
+      navigate('/terminal-page', { state: { connectionId: id } });
     } catch (error) {
       console.error('SSH 접속 요청 실패:', error);
     }

@@ -15,6 +15,8 @@
     "@types/node": "^16.18.113",
     "@types/react": "^18.3.11",
     "@types/react-dom": "^18.3.1",
+    "@xterm/addon-fit": "^0.10.0",
+    "@xterm/xterm": "^5.5.0",
     "antd": "^5.22.2",
     "axios": "^1.7.9",
     "lucide-react": "^0.477.0",
@@ -22,6 +24,7 @@
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.1",
     "react-scripts": "5.0.1",
+    "socket.io-client": "^4.8.1",
     "styled-components": "^6.1.13",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

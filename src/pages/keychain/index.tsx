@@ -1,7 +1,7 @@
 import RegisterModal from '@components/dashboard/modals/register-modal';
 import KeychainReadModal from '@components/dashboard/modals/keychain-read-modal';
-import RegisterCard from '@components/dashboard/cards/register-card';
 import KeychainCard from '@components/dashboard/cards/keychain-card';
+import RegisterCard from '@components/dashboard/cards/register-card';
 import getKeychain from 'api/keychains/keychain-read';
 import { useCallback, useEffect, useState } from 'react';
 import { KeychainContainer } from './index.style';

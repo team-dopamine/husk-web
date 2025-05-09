@@ -1,6 +1,6 @@
 export interface ModalProps {
   isOpen: boolean;
-  onClose: () => void;
   currentPage: string;
+  onClose: () => void;
   fields: { label: string; placeholder: string }[];
 }

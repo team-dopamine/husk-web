@@ -1,7 +1,7 @@
 import postKeychain from 'api/keychains/keychain-register';
+import postSshConnection from 'api/ssh-connections/ssh-register/ssh-connection-register';
 import { Container, ActionButton } from './index.style';
 import { getStoredToken } from 'api/context/auth-util';
-import postSshConnection from 'api/ssh-connections/ssh-save/ssh-connection-register';
 
 type SaveButtonGroupProps = {
   inputValues: string[];

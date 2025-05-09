@@ -60,6 +60,7 @@ const KeychainPage = () => {
           setIsModalOpen(false);
           fetchKeychain();
         }}
+        currentPage="keychain"
         fields={[
           { label: 'Name', placeholder: 'Enter name' },
           { label: 'Private Key (Contents)', placeholder: 'Enter key' },

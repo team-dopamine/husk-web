@@ -38,7 +38,6 @@ const postSshConnection = async (data: RentalRequestData): Promise<void> => {
     );
     alert(response.data.message);
   } catch (error: unknown) {
-    console.log('에러 발생');
     if (error instanceof AxiosError && error.response) {
       const errorMessage = (error.response?.data as ErrorResponse)?.message || '저장에 실패했습니다';
       throw new Error(errorMessage);

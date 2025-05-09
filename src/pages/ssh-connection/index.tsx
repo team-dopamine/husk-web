@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import getSshConnections, { SshConnection } from 'api/ssh-connections/ssh-read';
 import KeychainCard from '@components/dashboard/cards/keychain-card';
 import postSshSession from 'api/ssh-connections/ssh-session';
-import RegisterModal from '@components/dashboard/modals/register-modal';
 import RegisterCard from '@components/dashboard/cards/register-card';
+import RegisterModal from '@components/dashboard/modals/register-modal';
 import { SshConnectionContainer } from './index.style';
 
 const SshConnectionPage = () => {

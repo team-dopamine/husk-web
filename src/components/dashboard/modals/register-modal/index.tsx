@@ -4,9 +4,9 @@ import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapp
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 import SaveButton from '@components/dashboard/button/saveButton';
 import useModal from '../../../../hooks/useModal';
-import { ModalProps } from './types';
+import { RegisterModalProps } from '../types';
 
-const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, currentPage, fields }) => {
+const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, currentPage, fields }) => {
   if (!isOpen) return null;
 
   const [inputValues, setInputValues] = useState<string[]>(fields.map(() => ''));
@@ -49,5 +49,4 @@ const RegisterModal: React.FC<ModalProps> = ({ isOpen, onClose, currentPage, fie
 };
 
 export { useModal };
-export type { ModalProps };
 export default RegisterModal;

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import getSshConnections, { SshConnection } from 'api/ssh-connections/ssh-read';
-import KeychainCard from '@components/dashboard/cards/keychain-card';
 import postSshSession from 'api/ssh-connections/ssh-session';
 import RegisterCard from '@components/dashboard/cards/register-card';
 import RegisterModal from '@components/dashboard/modals/register-modal';
 import { SshConnectionContainer } from './index.style';
+import SshConnectionCard from '@components/dashboard/cards/sshConnection-card';
 
 const SshConnectionPage = () => {
   const [sshConnections, setSshConnections] = useState<SshConnection[]>([]);
@@ -37,7 +37,7 @@ const SshConnectionPage = () => {
   return (
     <SshConnectionContainer>
       {sshConnections.map(({ id, name, host, port }) => (
-        <KeychainCard key={id} id={id} title={name} label={`${host}:${port}`} onClick={() => handleSshSession(id)} />
+        <SshConnectionCard key={id} id={id} title={name} label={`${host}:${port}`} onClick={() => handleSshSession(id)} />
       ))}
       <RegisterCard onClick={() => setIsModalOpen(true)} />
       <RegisterModal

@@ -2,10 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ModalContent, Overlay, CloseButton } from '@components/dashboard/modals/register-modal/index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
-import { ModalProps } from '@components/dashboard/modals/register-modal/types';
+import { SshConnectionReadModalProps } from '@components/dashboard/modals/types';
+import ButtonGroup from '@components/dashboard/button';
+import { handleSshDelete } from './handlers';
 
-const SshConnectionReadModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+const SshConnectionReadModal: React.FC<SshConnectionReadModalProps> = ({ id, isOpen, onClose, onSuccess, inputValues, onSave }) => {
   if (!isOpen) return null;
+
+  const handleDelete = () => handleSshDelete(id, onClose, onSuccess);
 
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
@@ -13,6 +17,7 @@ const SshConnectionReadModal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
         <CloseButton onClick={onClose}>
           <CloseIcon />
         </CloseButton>
+        <ButtonGroup id={id} inputValues={inputValues} onSave={onSave} onDelete={handleDelete} />
       </ModalContent>
     </Overlay>,
     document.body

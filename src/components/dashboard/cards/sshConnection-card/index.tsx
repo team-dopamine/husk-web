@@ -47,7 +47,7 @@ const SshConnectionCard: React.FC<Props> = ({ id, title, label, onClick, classNa
         onClose={() => setIsModalOpen(false)}
         inputValues={[title, label]}
         onSave={() => {
-          // TODO: 실제 키체인 수정 로직 작성
+          // TODO: 추후 SSH 수정 로직 작성
           console.log('Saved:', id);
         }}
       />

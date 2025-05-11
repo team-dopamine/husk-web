@@ -42,14 +42,14 @@ const SshConnectionCard: React.FC<Props> = ({ id, title, label, onClick, classNa
       </Container>
       {/* TODO: 추후 api 연결 시 수정 */}
       <SshConnectionReadModal
+        id={id}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        currentPage="ssh-connection"
-        fields={[
-          { label: 'Connection Name', placeholder: title },
-          { label: 'Host:Port', placeholder: label },
-          { label: 'ID', placeholder: id.toString() },
-        ]}
+        inputValues={[title, label]}
+        onSave={() => {
+          // TODO: 추후 SSH 수정 로직 작성
+          console.log('Saved:', id);
+        }}
       />
     </>
   );

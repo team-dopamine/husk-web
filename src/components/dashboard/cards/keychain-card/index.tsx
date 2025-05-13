@@ -67,7 +67,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         fields={[
-          { label: 'Name', placeholder: title || '데이터 없음', type: 'text' },
+          { label: 'Name', placeholder: label || '데이터 없음', type: 'text' },
           { label: 'Private Key (Contents)', placeholder: decryptedContent || '********', type: 'password' },
         ]}
         id={id}

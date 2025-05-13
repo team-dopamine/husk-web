@@ -1,5 +1,4 @@
 import RegisterModal from '@components/dashboard/modals/register-modal';
-import KeychainReadModal from '@components/dashboard/modals/keychain-read-modal';
 import RegisterCard from '@components/dashboard/cards/register-card';
 import KeychainCard from '@components/dashboard/cards/keychain-card';
 import getKeychain from 'api/keychains/keychain-read';
@@ -14,9 +13,7 @@ interface KeychainResponse {
 
 const KeychainPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isReadModalOpen, setIsReadModalOpen] = useState(false);
   const [responseData, setResponseData] = useState<KeychainResponse[]>([]);
-  const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const fetchKeychain = useCallback(async () => {
     try {
@@ -35,21 +32,10 @@ const KeychainPage = () => {
     fetchKeychain();
   }, [fetchKeychain]);
 
-  const selectedData = responseData.find((item) => item.id === selectedId);
-
   return (
     <KeychainContainer style={{ marginTop: '176px', marginLeft: '280px' }}>
       {responseData.map((item) => (
-        <KeychainCard
-          key={item.id}
-          id={item.id}
-          title={`Type PEM`}
-          label={item.name}
-          onClick={() => {
-            setSelectedId(item.id ?? null);
-            setIsReadModalOpen(true);
-          }}
-        />
+        <KeychainCard key={item.id} id={item.id} title={`Type PEM`} label={item.name} />
       ))}
 
       <RegisterCard onClick={() => setIsModalOpen(true)} />
@@ -65,23 +51,6 @@ const KeychainPage = () => {
           { label: 'Private Key (Contents)', placeholder: 'Enter key' },
         ]}
       />
-
-      {selectedData && (
-        <KeychainReadModal
-          isOpen={isReadModalOpen}
-          onClose={() => setIsReadModalOpen(false)}
-          onSuccess={fetchKeychain}
-          fields={[
-            { label: 'Name', placeholder: selectedData.name, type: 'text' },
-            {
-              label: 'Private Key (Contents)',
-              placeholder: selectedData.content,
-              type: 'password',
-            },
-          ]}
-          id={selectedData?.id}
-        />
-      )}
     </KeychainContainer>
   );
 };

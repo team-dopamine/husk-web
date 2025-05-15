@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Button } from 'antd';
+import { Link } from 'react-router-dom';
 
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -17,10 +18,12 @@ export const HeaderWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoWrapper = styled(Link)`
+  gap: 20px;
   display: flex;
   align-items: center;
-  gap: 20px;
+  text-decoration: none;
+  color: inherit;
 `;
 
 export const Logo = styled.a`
@@ -42,6 +45,12 @@ export const LogoImg = styled.div`
   border-radius: 50%;
   background-color: black;
   opacity: 10%;
+`;
+
+export const HuskLogo = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 `;
 
 export const UserActionButtons = styled.div``;

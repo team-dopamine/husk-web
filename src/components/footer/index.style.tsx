@@ -25,6 +25,8 @@ export const Link = styled(Button)`
   border: none;
   background: transparent;
   position: relative;
+  text-decoration: none;
+  color: inherit;
 
   &:hover,
   &:focus {

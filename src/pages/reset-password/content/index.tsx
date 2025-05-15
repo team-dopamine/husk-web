@@ -1,4 +1,4 @@
-import { Container, ContentWrapper, Title, PasswordWrapper, Message } from './index.style';
+import { Container, ContentWrapper, Title, PasswordWrapper } from './index.style';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import NavigationButtons from '@components/button';
@@ -15,7 +15,7 @@ const Content = () => {
 
   const handleNextClick = () => {
     if (isVerified) {
-      navigate('/sign-in');
+      navigate('/signin');
     }
   };
 
@@ -30,7 +30,7 @@ const Content = () => {
 
   const nextButtonConfig = {
     label: 'Login',
-    href: '/sign-in',
+    href: '/signin',
     onClick: handleNextClick,
     disabled: !isVerified,
   };

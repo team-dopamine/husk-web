@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Button } from 'antd';
 
 export const HeaderWrapper = styled.div`
@@ -17,17 +18,12 @@ export const HeaderWrapper = styled.div`
   z-index: 1000;
 `;
 
-export const LogoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 20px;
-`;
-
 export const Logo = styled.a`
   text-decoration: none;
   font-size: 28px;
   font-weight: 600;
   color: black;
+  text-decoration: none;
 
   &:hover,
   &:visited,
@@ -70,5 +66,12 @@ export const WithdrawButton = styled(Button)`
   }
 `;
 
-export const AuthBox = styled.div`
-s`;
+export const AuthBox = styled.div``;
+
+export const LogoWrapper = styled(Link)`
+  gap: 20px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+`;

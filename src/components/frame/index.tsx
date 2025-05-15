@@ -8,16 +8,16 @@ const Frame = () => {
   const navigate = useNavigate();
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem('isLoggedIn') === 'true';
+    return sessionStorage.getItem('isLoggedIn') === 'true';
   });
 
   useEffect(() => {
-    const storedLoginState = localStorage.getItem('isLoggedIn') === 'true';
+    const storedLoginState = sessionStorage.getItem('isLoggedIn') === 'true';
     setIsLoggedIn(storedLoginState);
   }, []);
 
   const handleLoginSuccess = () => {
-    localStorage.setItem('isLoggedIn', 'true');
+    sessionStorage.setItem('isLoggedIn', 'true');
     setIsLoggedIn(true);
     navigate('/');
   };

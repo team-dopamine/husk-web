@@ -23,7 +23,7 @@ const Content = () => {
   };
   const handleOAuthSignIn = (provider: string) => {
     if (provider === 'email') {
-      navigate('/auth-sign-in');
+      navigate('/auth/signin');
     } else if (provider === 'google') {
       googleLogin();
     } else if (provider === 'github') {
@@ -42,7 +42,7 @@ const Content = () => {
         </ButtonGroup>
         <SignUpWrapper>
           <SignUpText>
-            계정이 없으신가요? <SignUpLink href="/read-terms">Sign up</SignUpLink>
+            계정이 없으신가요? <SignUpLink href="/terms">Sign up</SignUpLink>
           </SignUpText>
         </SignUpWrapper>
       </ContentWrapper>

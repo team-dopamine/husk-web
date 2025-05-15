@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import postSignIn from 'api/sign-in';
 import { AuthContext } from 'api/context/auth-context';
 import { Container, ContentWrapper, Title, InputField, LoginButton, Label, ResetPasswordLink, ResetPasswordText } from '@pages/sign-in/sign-in-email/content/index.style';
-import Header from '@components/header';
 
 const SigninContent: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -45,7 +44,7 @@ const SigninContent: React.FC = () => {
             {loading ? 'Logging in...' : 'Login'}
           </LoginButton>
           <ResetPasswordText>
-            비밀번호를 잃으셨나요? <ResetPasswordLink href="/reset-password">Reset password</ResetPasswordLink>
+            비밀번호를 잃으셨나요? <ResetPasswordLink href="/password/reset">Reset password</ResetPasswordLink>
           </ResetPasswordText>
         </ContentWrapper>
       </Container>

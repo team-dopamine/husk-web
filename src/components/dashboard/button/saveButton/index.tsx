@@ -37,7 +37,7 @@ const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues, onClose, curr
         console.error('Error posting data:', error);
         alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');
       }
-    } else if (currentPage == 'ssh-connection') {
+    } else if (currentPage == 'connections') {
       try {
         const trimmedValues = inputValues.map((value) => value.trim());
 
@@ -49,13 +49,14 @@ const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues, onClose, curr
         await postSshConnection({
           name: inputValues[0],
           host: inputValues[1],
-          username: inputValues[2],
-          port: inputValues[3],
+          port: inputValues[2],
+          username: inputValues[3],
           keyChainName: inputValues[4],
           accessToken,
         });
 
         onClose();
+        window.location.reload();
       } catch (error) {
         console.error('Error posting data:', error);
         alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');

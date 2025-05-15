@@ -40,7 +40,7 @@ const Password = () => {
 
   const previousButtonConfig = {
     label: 'Previous',
-    href: '/sign-up',
+    href: '/signup',
   };
 
   const nextButtonConfig = {

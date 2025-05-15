@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, ContentWrapper, Title, PreviousButton, NextButton, ButtonGroup } from './index.style';
+import { Container, ContentWrapper, Title } from './index.style';
 import EmailVerify from '@components/sign-up/email-verify';
 import NavigationButtons from '@components/button';
 
@@ -39,7 +39,7 @@ const EmailContent = () => {
         <NavigationButtons
           previousButton={{
             label: 'Previous',
-            href: '/read-terms',
+            href: '/terms',
           }}
           nextButton={{
             label: 'Next',

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Label, HiddenCheckbox, StyledCheckbox, Container, ContentWrapper, Title, TermsWrapper, TermsTextarea, AgreementCheckboxWrapper, AgreementText } from './index.style';
-import getTermsOfService from 'api/read-terms';
+import getTermsOfService from 'api/terms';
 import NavigationButtons from '@components/button';
 
 const Content = () => {
@@ -24,12 +24,12 @@ const Content = () => {
 
   const previousButtonConfig = {
     label: 'Previous',
-    href: '/sign-in',
+    href: '/signin',
   };
 
   const nextButtonConfig = {
     label: 'Next',
-    href: '/sign-up',
+    href: '/signup',
     disabled: !isChecked,
   };
 

@@ -28,7 +28,7 @@ const SshConnectionPage = () => {
   const handleSshSession = async (id: number) => {
     try {
       await postSshSession(id);
-      navigate('/terminal-page', { state: { connectionId: id } });
+      navigate('/terminal', { state: { connectionId: id } });
     } catch (error) {
       console.error('SSH 접속 요청 실패:', error);
     }
@@ -45,13 +45,13 @@ const SshConnectionPage = () => {
         onClose={() => {
           setIsModalOpen(false);
         }}
-        currentPage={'ssh-connection'}
+        currentPage={'connections'}
         fields={[
           { label: 'Connection Name', placeholder: 'Name' },
           { label: 'Host IP', placeholder: 'Value' },
           { label: 'Port', placeholder: 'Value' },
           { label: 'Username', placeholder: 'Value' },
-          { label: 'key Pair Name', placeholder: 'Value' },
+          { label: 'KeyChain Name', placeholder: 'Value' },
         ]}
       />
     </SshConnectionContainer>

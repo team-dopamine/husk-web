@@ -26,11 +26,11 @@ const Github = () => {
             navigate('/');
           }
         } else if (status === 400) {
-          navigate('/sign-in');
+          navigate('/signin');
         }
       } catch (err) {
         console.error('Github 로그인 오류:', err);
-        navigate('/sign-in');
+        navigate('/signin');
       }
     };
 

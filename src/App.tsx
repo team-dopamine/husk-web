@@ -9,7 +9,7 @@ import Main from '@pages/main';
 import SignIn from '@pages/sign-in';
 import AuthSignIn from '@pages/sign-in/sign-in-email';
 import SignUp from '@pages/sign-up';
-import ReadTerms from '@pages/sign-up/content/read-terms';
+import ReadTerms from '@pages/sign-up/content/terms';
 import Password from '@pages/sign-up/content/password';
 import ResetPassword from '@pages/reset-password';
 import TempUpdatePasswordConfirm from '@pages/temp-update-password/verify';
@@ -29,21 +29,21 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Frame />}>
               <Route index element={<Main />} />
-              <Route path="sign-in" element={<SignIn />} />
-              <Route path="auth-sign-in" element={<AuthSignIn />} />
-              <Route path="sign-up" element={<SignUp />} />
+              <Route path="signin" element={<SignIn />} />
+              <Route path="auth/signin" element={<AuthSignIn />} />
+              <Route path="signup" element={<SignUp />} />
+              <Route path="terms" element={<ReadTerms />} />
               <Route path="password" element={<Password />} />
-              <Route path="reset-password" element={<ResetPassword />} />
-              <Route path="read-terms" element={<ReadTerms />} />
-              <Route path="temp-update-password-confirm" element={<TempUpdatePasswordConfirm />} />
-              <Route path="temp-update-password-setting" element={<TempUpdatePasswordSetting />} />
+              <Route path="password/reset" element={<ResetPassword />} />
+              <Route path="password/confirm" element={<TempUpdatePasswordConfirm />} />
+              <Route path="password/setting" element={<TempUpdatePasswordSetting />} />
             </Route>
             <Route path="/dashboard" element={<DashboardFrame />}>
               <Route index element={<Dashboard />} />
-              <Route path="keychain-page" element={<KeychainPage />} />
-              <Route path="sshConnection-page" element={<SshConnectionPage />} />
+              <Route path="keychains" element={<KeychainPage />} />
+              <Route path="connections" element={<SshConnectionPage />} />
             </Route>
-            <Route path="terminal-page" element={<TerminalPage />} />
+            <Route path="terminal" element={<TerminalPage />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>

@@ -17,7 +17,7 @@ const TempUpdatePasswordConfirm: React.FC = () => {
     setLoading(true);
     try {
       await postPasswordVerify({ currentPassword });
-      navigate('/temp-update-password-setting');
+      navigate('/password/setting');
     } catch (error) {
       alert(error instanceof Error ? error.message : '비밀번호 확인에 실패했습니다.');
       console.error(error);

@@ -58,7 +58,7 @@ const EmailVerify: React.FC<EmailVerifyProps> = ({ onInputChange }) => {
         alert('이메일을 입력해주세요.');
         return;
       }
-      const api = pathname.includes('reset-password') ? postResetPasswordVerify : postSendCode;
+      const api = pathname.includes('password/reset') ? postResetPasswordVerify : postSendCode;
 
       await api({ email, code: '' });
 

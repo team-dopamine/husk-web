@@ -56,16 +56,12 @@ const SshConnectionCard: React.FC<Props> = ({ id, title, label, onClick, classNa
         id={id}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        inputValues={[title, label]}
-        onSave={() => {
-          console.log('Saved:', id);
-        }}
         fields={[
-          { label: 'Connection Name', placeholder: inputValues[0] || '' },
-          { label: 'Host IP', placeholder: inputValues[1] || '' },
-          { label: 'Port', placeholder: inputValues[2] || '' },
-          { label: 'Username', placeholder: inputValues[3] || '' },
-          { label: 'Key Pair Name', placeholder: inputValues[4] || '' },
+          { label: 'Connection Name', placeholder: inputValues[0] ?? '' },
+          { label: 'Host IP', placeholder: inputValues[1] ?? '' },
+          { label: 'Port', placeholder: inputValues[2] ?? '' },
+          { label: 'Username', placeholder: inputValues[3] ?? '' },
+          { label: 'Key Pair Name', placeholder: inputValues[4] ?? '' },
         ]}
       />
     </>

@@ -10,7 +10,5 @@ export interface SshConnectionReadModalProps {
   isOpen: boolean;
   fields: { label: string; placeholder: string }[];
   onClose: () => void;
-  inputValues: string[];
-  onSave: () => void;
   onSuccess?: () => void;
 }

@@ -47,11 +47,11 @@ const SshConnectionPage = () => {
         }}
         currentPage={'connections'}
         fields={[
-          { label: 'Connection Name', placeholder: 'Name' },
-          { label: 'Host IP', placeholder: 'Value' },
-          { label: 'Port', placeholder: 'Value' },
-          { label: 'Username', placeholder: 'Value' },
-          { label: 'KeyChain Name', placeholder: 'Value' },
+          { label: 'Connection Name', placeholder: 'Connection Name' },
+          { label: 'Host IP', placeholder: 'Host IP' },
+          { label: 'Port', placeholder: 'Port' },
+          { label: 'Username', placeholder: 'Username' },
+          { label: 'KeyChain Name', placeholder: 'KeyChain Name' },
         ]}
       />
     </SshConnectionContainer>

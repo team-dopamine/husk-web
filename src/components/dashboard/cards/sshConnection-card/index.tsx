@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Label, Title, Content, ContentWrapper, MoreButton } from '@components/dashboard/cards/keychain-card/index.style';
 import SshConnectionReadModal from '@components/dashboard/modals/sshConnection';
+import getSshConnectionDetail, { SshConnectionDetail } from 'api/ssh-connections/ssh-detail-read';
 
 type Props = {
   id: number;
@@ -12,9 +13,19 @@ type Props = {
 
 const SshConnectionCard: React.FC<Props> = ({ id, title, label, onClick, className = '' }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [connectionValue, setConnectionValue] = useState<SshConnectionDetail[]>([]);
+  const [inputValues, setInputValues] = useState<string[]>([]);
 
-  const handleOpen = () => {
-    setIsModalOpen(true);
+  const handleOpen = async (id: number) => {
+    try {
+      const response = await getSshConnectionDetail(id);
+
+      setConnectionValue([response]);
+      setInputValues([response.name, response.host, response.port, response.username, response.keyChainName]);
+      setIsModalOpen(true);
+    } catch (error) {
+      console.error('SSH 접속 요청 실패:', error);
+    }
   };
 
   return (
@@ -35,21 +46,27 @@ const SshConnectionCard: React.FC<Props> = ({ id, title, label, onClick, classNa
             color="#333"
             onClick={(e) => {
               e.stopPropagation();
-              handleOpen();
+              handleOpen(id);
             }}
           />
         </ContentWrapper>
       </Container>
-      {/* TODO: 추후 api 연결 시 수정 */}
+
       <SshConnectionReadModal
         id={id}
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         inputValues={[title, label]}
         onSave={() => {
-          // TODO: 추후 SSH 수정 로직 작성
           console.log('Saved:', id);
         }}
+        fields={[
+          { label: 'Connection Name', placeholder: inputValues[0] || '' },
+          { label: 'Host IP', placeholder: inputValues[1] || '' },
+          { label: 'Port', placeholder: inputValues[2] || '' },
+          { label: 'Username', placeholder: inputValues[3] || '' },
+          { label: 'Key Pair Name', placeholder: inputValues[4] || '' },
+        ]}
       />
     </>
   );

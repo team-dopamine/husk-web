@@ -8,6 +8,7 @@ export interface RegisterModalProps {
 export interface SshConnectionReadModalProps {
   id: number;
   isOpen: boolean;
+  fields: { label: string; placeholder: string }[];
   onClose: () => void;
   inputValues: string[];
   onSave: () => void;

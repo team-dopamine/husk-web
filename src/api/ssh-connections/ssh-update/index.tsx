@@ -15,7 +15,6 @@ interface ErrorResponse {
 }
 
 const patchSshConnectionUpdate = async (data: RequestData): Promise<void> => {
-  console.log(data);
   try {
     const response = await api.patch(
       `connections/${data.id}`,
@@ -26,7 +25,6 @@ const patchSshConnectionUpdate = async (data: RequestData): Promise<void> => {
         },
       }
     );
-    console.log('data.id', data.port);
     alert(response.data.message);
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {

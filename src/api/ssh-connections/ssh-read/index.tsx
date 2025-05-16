@@ -7,7 +7,6 @@ export interface SshConnection {
   name: string;
   host: string;
   port: string;
-  keyChainName: string;
 }
 
 interface ErrorResponse {
@@ -29,7 +28,6 @@ const getSshConnections = async (): Promise<SshConnection[]> => {
       name: item.name,
       host: item.host,
       port: item.port,
-      keyChainName: item.keyChainName,
     }));
   } catch (error: unknown) {
     const err = error as AxiosError<ErrorResponse>;

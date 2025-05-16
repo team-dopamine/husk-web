@@ -5,14 +5,15 @@ import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 import { SshConnectionReadModalProps } from '@components/dashboard/modals/types';
 import ButtonGroup from '@components/dashboard/button';
 import InputGroup from '@components/dashboard/modals/keychain-read-modal/inputGroup';
-import { handleSshDelete } from './handlers';
+import { handleSshDelete, handleSshUpdate } from './handlers';
 
-const SshConnectionReadModal: React.FC<SshConnectionReadModalProps> = ({ id, isOpen, fields, onClose, onSuccess, inputValues, onSave }) => {
+const SshConnectionReadModal: React.FC<SshConnectionReadModalProps> = ({ id, isOpen, fields, onClose, onSuccess }) => {
   if (!isOpen) return null;
 
   const [inputValue, setInputValues] = useState<string[]>(fields.map((f) => f.placeholder));
 
   const handleDelete = () => handleSshDelete(id, onClose, onSuccess);
+  const handleSave = () => handleSshUpdate(id, inputValue, onClose, onSuccess);
 
   const handleInputChange = (index: number, value: string) => {
     setInputValues((prev) => {
@@ -29,7 +30,7 @@ const SshConnectionReadModal: React.FC<SshConnectionReadModalProps> = ({ id, isO
           <CloseIcon />
         </CloseButton>
         <InputGroup fields={fields} inputValues={inputValue} onChange={handleInputChange} showKeychain={false} />
-        <ButtonGroup id={id} inputValues={inputValue} onSave={onSave} onDelete={handleDelete} />
+        <ButtonGroup id={id} inputValues={inputValue} onSave={handleSave} onDelete={handleDelete} />
       </ModalContent>
     </Overlay>,
     document.body

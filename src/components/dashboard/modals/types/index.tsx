@@ -5,6 +5,11 @@ export interface RegisterModalProps {
   fields: { label: string; placeholder: string; type?: string }[];
 }
 
+export interface UpdateModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export interface SshConnectionReadModalProps {
   id: number;
   isOpen: boolean;

@@ -9,7 +9,7 @@ interface ErrorResponse {
   message?: string;
 }
 
-const postPasswordVerify = async (data: RequestData): Promise<void> => {
+const postVerifyPassword = async (data: RequestData): Promise<void> => {
   try {
     const response = await api.post(
       'auth/password/verify',
@@ -22,7 +22,6 @@ const postPasswordVerify = async (data: RequestData): Promise<void> => {
         },
       }
     );
-    alert(response.data.message);
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {
       const errorMessage = (error.response.data as ErrorResponse)?.message || '비밀번호를 다시 입력하세요';
@@ -35,4 +34,4 @@ const postPasswordVerify = async (data: RequestData): Promise<void> => {
   }
 };
 
-export default postPasswordVerify;
+export default postVerifyPassword;

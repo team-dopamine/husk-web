@@ -44,7 +44,6 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
       <Container
         className={className}
         onClick={() => {
-          console.log('✅ 카드 클릭됨');
           onClick?.();
         }}
       >
@@ -55,7 +54,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
           </Content>
           <MoreButton
             size={33}
-            color="#333"
+            color="var(--main-color)"
             onClick={(e) => {
               e.stopPropagation();
               handleOpen();
@@ -68,7 +67,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
         onClose={() => setIsModalOpen(false)}
         fields={[
           { label: 'Name', placeholder: label || '데이터 없음', type: 'text' },
-          { label: 'Private Key (Contents)', placeholder: decryptedContent || '********', type: 'password' },
+          { label: 'Private Key (Contents)', placeholder: decryptedContent || '********', type: 'textarea' },
         ]}
         id={id}
       />

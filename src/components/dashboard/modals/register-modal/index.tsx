@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton } from './index.style';
+import { Label, ModalContent, Overlay, ButtonWrapper, InputContainer, InputWrapper, InputField, CloseButton, TextAreaField } from './index.style';
 import { ReactComponent as CloseIcon } from '../../../../assets/CloseIcon.svg';
 import SaveButton from '@components/dashboard/button/saveButton';
 import useModal from '../../../../hooks/useModal';
@@ -34,7 +34,11 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, currentP
           {fields.map((field, index) => (
             <InputContainer key={index}>
               <Label>{field.label}</Label>
-              <InputField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} />
+              {field.type === 'textarea' ? (
+                <TextAreaField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} />
+              ) : (
+                <InputField placeholder={field.placeholder} value={inputValues[index]} onChange={(e) => handleInputChange(index, e.target.value)} />
+              )}
             </InputContainer>
           ))}
         </InputWrapper>

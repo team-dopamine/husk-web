@@ -5,7 +5,7 @@ export interface RegisterModalProps {
   fields: { label: string; placeholder: string; type?: string }[];
 }
 
-export interface ResetModalProps {
+export interface UpdateModalProps {
   isOpen: boolean;
   onClose: () => void;
 }

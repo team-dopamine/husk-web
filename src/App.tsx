@@ -16,7 +16,7 @@ import KeychainPage from '@pages/keychain';
 import SshConnectionPage from '@pages/ssh-connection';
 import TerminalPage from '@pages/terminal';
 import GlobalStyle from '@styles/global/GlobalStyle';
-import ResetPassword from '@api/reset-password';
+import ResetPassword from '@pages/reset-password';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 

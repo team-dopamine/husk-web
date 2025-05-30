@@ -39,7 +39,6 @@ const KeychainPage = () => {
       ))}
 
       <RegisterCard onClick={() => setIsModalOpen(true)} />
-
       <RegisterModal
         isOpen={isModalOpen}
         onClose={() => {
@@ -48,8 +47,8 @@ const KeychainPage = () => {
         }}
         currentPage="keychain"
         fields={[
-          { label: 'Name', placeholder: 'Enter name' },
-          { label: 'Private Key (Contents)', placeholder: 'Enter key' },
+          { label: 'Name', placeholder: 'Enter name', type: 'text' },
+          { label: 'Private Key (Contents)', placeholder: 'Register your key pair', type: 'textarea' },
         ]}
       />
     </KeychainContainer>

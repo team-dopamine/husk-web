@@ -29,13 +29,13 @@ export const Content = styled.div`
 `;
 
 export const Label = styled.div`
-  color: #000;
+  color: var(--main-color);
   font-size: 20px;
   font-weight: 400;
 `;
 
 export const Title = styled.span`
-  color: #000;
+  color: var(--main-color);
   font-size: 25px;
   font-weight: 600;
 `;

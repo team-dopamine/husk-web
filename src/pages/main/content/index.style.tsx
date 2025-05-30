@@ -19,7 +19,7 @@ const ButtonStyle = styled(Button)`
 export const Banner = styled.div`
   width: 100%;
   height: 200px;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: var(--main-color);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -60,9 +60,13 @@ export const FunctionButton = styled(ButtonStyle)`
 
 export const StartButton = styled(ButtonStyle)`
   color: white;
-  background-color: black;
-  border: 1px solid black;
+  border: 1px solid white;
+  background-color: transparent;
   text-decoration: none;
+  &:hover {
+    transform: scale(1);
+    border: 1px solid white;
+  }
 `;
 
 export const MainContent = styled.div`
@@ -74,9 +78,9 @@ export const MainContent = styled.div`
   padding: 0 40px;
 `;
 
-export const ContentImage = styled.div`
-  width: 520px;
-  height: 390px;
+export const ContentImage = styled.img`
+  width: 50%;
+  height: 50%;
   background-color: #d9d9d980;
   border-radius: 12px;
   flex-shrink: 0;

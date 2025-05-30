@@ -53,7 +53,7 @@ export const LoginButton = styled(Button)`
   `}
 
   color: white !important;
-  background-color: black;
+  background-color: var(--main-color) !important;
   text-decoration: none;
 
   &:hover {
@@ -89,11 +89,10 @@ export const ResetPasswordText = styled.p`
 `;
 
 export const ResetPasswordLink = styled.a`
-  color: #0066ff;
-  text-decoration: none;
-  font-weight: 500;
+  color: var(--main-color);
+  font-weight: 700;
 
   &:hover {
-    text-decoration: underline;
+    text-decoration: none;
   }
 `;

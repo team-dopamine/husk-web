@@ -11,7 +11,6 @@ import AuthSignIn from '@pages/sign-in/sign-in-email';
 import SignUp from '@pages/sign-up';
 import ReadTerms from '@pages/sign-up/content/terms';
 import Password from '@pages/sign-up/content/password';
-import ResetPassword from '@pages/reset-password';
 import Dashboard from '@pages/dashboard';
 import KeychainPage from '@pages/keychain';
 import SshConnectionPage from '@pages/ssh-connection';
@@ -35,7 +34,6 @@ const App: React.FC = () => {
                 <Route path="signup" element={<SignUp />} />
                 <Route path="terms" element={<ReadTerms />} />
                 <Route path="password" element={<Password />} />
-                <Route path="password/reset" element={<ResetPassword />} />
               </Route>
               <Route path="/dashboard" element={<DashboardFrame />}>
                 <Route index element={<Dashboard />} />

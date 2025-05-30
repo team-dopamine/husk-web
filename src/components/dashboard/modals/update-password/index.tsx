@@ -16,6 +16,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
   const navigate = useNavigate();
 
   const handleSubmit = async () => {

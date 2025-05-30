@@ -10,7 +10,7 @@ export default class Terminal {
       cursorBlink: true,
       scrollSensitivity: 2,
       theme: {
-        background: '#222',
+        background: 'var(--main-color)',
         foreground: '#fff',
       },
     });

@@ -12,8 +12,6 @@ import SignUp from '@pages/sign-up';
 import ReadTerms from '@pages/sign-up/content/terms';
 import Password from '@pages/sign-up/content/password';
 import ResetPassword from '@pages/reset-password';
-import TempUpdatePasswordConfirm from '@pages/temp-update-password/verify';
-import TempUpdatePasswordSetting from '@pages/temp-update-password/setting';
 import Dashboard from '@pages/dashboard';
 import KeychainPage from '@pages/keychain';
 import SshConnectionPage from '@pages/ssh-connection';
@@ -35,8 +33,6 @@ const App: React.FC = () => {
               <Route path="terms" element={<ReadTerms />} />
               <Route path="password" element={<Password />} />
               <Route path="password/reset" element={<ResetPassword />} />
-              <Route path="password/confirm" element={<TempUpdatePasswordConfirm />} />
-              <Route path="password/setting" element={<TempUpdatePasswordSetting />} />
             </Route>
             <Route path="/dashboard" element={<DashboardFrame />}>
               <Route index element={<Dashboard />} />

@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '@api/context/auth-context';
 import { HeaderWrapper, LogoWrapper, Logo, UserActionButtons, EditProfileButton, LogoutButton } from './index.style';
 import { ReactComponent as HUSK } from '@assets/HUSK.svg';
-import ResetModal from '@components/dashboard/modals/reset-password';
+import UpdateModal from '@components/dashboard/modals/update-password';
 
 const DashboardHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -31,7 +31,7 @@ const DashboardHeader: React.FC = () => {
       </LogoWrapper>
       <UserActionButtons>
         <EditProfileButton onClick={() => setIsModalOpen(true)}>정보수정</EditProfileButton>
-        <ResetModal
+        <UpdateModal
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);

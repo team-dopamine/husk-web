@@ -16,6 +16,7 @@ import KeychainPage from '@pages/keychain';
 import SshConnectionPage from '@pages/ssh-connection';
 import TerminalPage from '@pages/terminal';
 import GlobalStyle from '@styles/global/GlobalStyle';
+import ResetPassword from '@api/reset-password';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || '';
 
@@ -34,6 +35,7 @@ const App: React.FC = () => {
                 <Route path="signup" element={<SignUp />} />
                 <Route path="terms" element={<ReadTerms />} />
                 <Route path="password" element={<Password />} />
+                <Route path="password/reset" element={<ResetPassword />} />
               </Route>
               <Route path="/dashboard" element={<DashboardFrame />}>
                 <Route index element={<Dashboard />} />

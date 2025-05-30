@@ -41,10 +41,10 @@ const SigninContent: React.FC = () => {
           <InputField type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
 
           <LoginButton onClick={handleLogin} disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </LoginButton>
           <ResetPasswordText>
-            비밀번호를 잃으셨나요? <ResetPasswordLink href="/password/reset">Reset password</ResetPasswordLink>
+            Forgot Your Password? <ResetPasswordLink href="/password/reset">Reset password</ResetPasswordLink>
           </ResetPasswordText>
         </ContentWrapper>
       </Container>

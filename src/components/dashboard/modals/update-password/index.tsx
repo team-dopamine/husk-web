@@ -6,9 +6,9 @@ import { Label, ModalContent, Overlay, InputWrapper, InputField, CloseButton, Su
 import useModal from '@hooks/useModal';
 import postVerifyPassword from '@api/verify-password';
 import patchUser from '@api/user';
-import { ResetModalProps } from '../types';
+import { UpdateModalProps } from '../types';
 
-const ResetModal: React.FC<ResetModalProps> = ({ isOpen, onClose }) => {
+const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const [currentPassword, setCurrentPassword] = useState('');
@@ -70,4 +70,4 @@ const ResetModal: React.FC<ResetModalProps> = ({ isOpen, onClose }) => {
 };
 
 export { useModal };
-export default ResetModal;
+export default UpdateModal;

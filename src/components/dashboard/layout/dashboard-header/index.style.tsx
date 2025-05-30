@@ -70,16 +70,13 @@ export const EditProfileButton = styled(Button)`
 `;
 
 export const LogoutButton = styled(Button)`
-  background-color: black !important;
-  opacity: 30% !important;
+  background-color: var(--main-color) !important;
   text-decoration: none;
-  margin-left: 10px;
   color: white;
-
   &:hover {
     background-color: white !important;
-    color: gray !important;
-    font-weight: 700;
-    border-color: gray !important;
+    color: var(--main-color) !important;
+    font-weight: 600;
+    border-color: var(--main-color) !important;
   }
 `;

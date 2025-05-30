@@ -2,7 +2,7 @@ export interface RegisterModalProps {
   isOpen: boolean;
   onClose: () => void;
   currentPage: string;
-  fields: { label: string; placeholder: string }[];
+  fields: { label: string; placeholder: string; type?: string }[];
 }
 
 export interface ResetModalProps {
@@ -15,7 +15,5 @@ export interface SshConnectionReadModalProps {
   isOpen: boolean;
   fields: { label: string; placeholder: string }[];
   onClose: () => void;
-  inputValues: string[];
-  onSave: () => void;
   onSuccess?: () => void;
 }

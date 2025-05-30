@@ -34,6 +34,7 @@ export const handleKeychainDelete = async ({ id, onClose, onSuccess }: { id?: nu
     await patchKeyChainDelete(id);
     onClose();
     onSuccess?.();
+    window.location.reload();
   } catch (error) {
     console.error('삭제 오류:', error);
     alert(error instanceof Error ? error.message : '삭제 실패');

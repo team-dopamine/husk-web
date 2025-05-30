@@ -2,29 +2,33 @@ import api from 'api/axios';
 import { AxiosError } from 'axios';
 
 interface RequestData {
-  currentPassword?: string;
+  name: string;
+  host: string;
+  username: string;
+  port: string;
+  keyChainName: string;
+  id: number;
 }
 
 interface ErrorResponse {
   message?: string;
 }
 
-const postVerifyPassword = async (data: RequestData): Promise<void> => {
+const patchSshConnectionUpdate = async (data: RequestData): Promise<void> => {
   try {
-    const response = await api.post(
-      'auth/password/verify',
-      {
-        currentPassword: data.currentPassword,
-      },
+    const response = await api.patch(
+      `connections/${data.id}`,
+      { name: data.name, host: data.host, port: data.port, username: data.username, keyChainName: data.keyChainName },
       {
         headers: {
           'Content-Type': 'application/json',
         },
       }
     );
+    alert(response.data.message);
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {
-      const errorMessage = (error.response.data as ErrorResponse)?.message || '비밀번호를 다시 입력하세요';
+      const errorMessage = (error.response.data as ErrorResponse)?.message || '키체인 수정에 실패했습니다';
       throw new Error(errorMessage);
     } else if (error instanceof AxiosError && error.request) {
       throw new Error('네트워크 문제 또는 서버가 응답하지 않습니다.');
@@ -34,4 +38,4 @@ const postVerifyPassword = async (data: RequestData): Promise<void> => {
   }
 };
 
-export default postVerifyPassword;
+export default patchSshConnectionUpdate;

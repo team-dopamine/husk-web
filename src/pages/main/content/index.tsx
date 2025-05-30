@@ -2,12 +2,13 @@ import { Banner, Title, Description, ButtonContainer, FunctionButton, StartButto
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../api/context/use-auth';
 import { useRef } from 'react';
+import SSHGif from 'assets/SSH.gif';
 
 const Content = () => {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLImageElement>(null);
 
   const handleScrollClick = () => {
     scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -38,8 +39,8 @@ const Content = () => {
 
       <MainContent>
         <ContentContainer>
-          <ContentImage />
-          <TextContainer ref={scrollRef}>
+          <ContentImage src={SSHGif} ref={scrollRef} />
+          <TextContainer>
             <MainTitle>SSH Connection</MainTitle>
             <MainDescription>SSH 연결을 통해 원격 서버에 접속할 수 있습니다.</MainDescription>
           </TextContainer>

@@ -6,14 +6,14 @@ export const Container = styled.div`
   width: 272px;
   height: 40px;
   align-items: center;
-  background-color: #222;
+  background-color: var(--main-color);
   border-radius: 20px;
   padding: 10px 20px;
   margin: auto;
 `;
 
 export const ButtonStyle = styled(Button)`
-  background-color: #2c2c2c;
+  background-color: var(--main-color);
   background: none;
   border: none;
   color: white;

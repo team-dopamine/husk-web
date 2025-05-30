@@ -19,6 +19,18 @@ export const InputStyle = styled(Input)`
   }
 `;
 
+export const TextAreaField = styled.textarea`
+  width: 100%;
+  padding: 8px;
+  height: 300px;
+  resize: none;
+  font-size: 14px;
+  line-height: 1.5;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  -webkit-text-security: disc; /* 글자 가리기 핵심 */
+`;
+
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -37,7 +49,7 @@ export const ModalContent = styled.div`
   padding: 24px;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 360px;
+  width: 500px;
 
   display: flex;
   flex-direction: column;
@@ -58,7 +70,7 @@ export const InputField = styled(InputStyle)`
 
 export const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: center; /* ✅ 버튼을 중앙 정렬 */
+  justify-content: center;
   align-items: center;
 `;
 
@@ -68,6 +80,7 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-top: 30px;
+  width: 100%;
 `;
 export const CloseButton = styled.button`
   position: absolute;
@@ -83,7 +96,7 @@ export const CloseButton = styled.button`
   svg {
     width: 100%;
     height: 100%;
-    fill: black;
+    fill: var(--main-color);
   }
 
   &:hover {

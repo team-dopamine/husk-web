@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const SidebarWrapper = styled.div`
   width: 220px;
   height: 100vh;
-  background-color: #f2f2f2;
+  background-color: var(--main-color);
+  opacity: 50px;
   padding-top: 92px;
   display: flex;
   flex-direction: column;
@@ -12,18 +13,28 @@ export const SidebarWrapper = styled.div`
 
 export const SidebarItem = styled.div`
   display: flex;
+  align-items: center;
   padding: 16px 20px;
   cursor: pointer;
+  color: white;
 
   &:hover {
-    background-color: #e9ecef;
+    background-color: white;
+    color: var(--main-color);
+    div {
+      background-color: #cbcbcb !important;
+    }
   }
 `;
 
 export const ButtonImg = styled.div`
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  margin-right: 12px;
-  background-color: #e6e6e6;
+  margin-right: 13px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
 `;

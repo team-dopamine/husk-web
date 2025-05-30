@@ -41,15 +41,14 @@ export const LogoImg = styled.div`
 `;
 
 export const LoginButton = styled(Button)`
-  background-color: black !important;
-  opacity: 50% !important;
+  background-color: var(--main-color) !important;
   text-decoration: none;
 
   &:hover {
     background-color: white !important;
-    color: gray !important;
-    font-weight: 700;
-    border-color: gray !important;
+    color: var(--main-color) !important;
+    font-weight: 600;
+    border-color: var(--main-color) !important;
   }
 `;
 

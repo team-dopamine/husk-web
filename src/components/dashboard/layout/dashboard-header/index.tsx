@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from 'api/context/auth-context';
+import { AuthContext } from '@api/context/auth-context';
 import { HeaderWrapper, LogoWrapper, Logo, UserActionButtons, EditProfileButton, LogoutButton } from './index.style';
-import { ReactComponent as HUSK } from 'assets/HUSK.svg';
+import { ReactComponent as HUSK } from '@assets/HUSK.svg';
+import ResetModal from '@components/dashboard/modals/reset-password';
 
 const DashboardHeader: React.FC = () => {
   const navigate = useNavigate();
   const { logout, accessToken, refreshToken } = useContext(AuthContext)!;
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = async () => {
     if (!accessToken || !refreshToken) {
@@ -28,7 +30,13 @@ const DashboardHeader: React.FC = () => {
         <Logo>HUSK</Logo>
       </LogoWrapper>
       <UserActionButtons>
-        <EditProfileButton href="#">정보수정</EditProfileButton>
+        <EditProfileButton onClick={() => setIsModalOpen(true)}>정보수정</EditProfileButton>
+        <ResetModal
+          isOpen={isModalOpen}
+          onClose={() => {
+            setIsModalOpen(false);
+          }}
+        />
         <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       </UserActionButtons>
     </HeaderWrapper>

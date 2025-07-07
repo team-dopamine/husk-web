@@ -48,6 +48,10 @@ const TerminalPage = () => {
     });
 
     terminal.onData((input: string) => {
+      if (input === '\x03') {
+        socket.send('\x03');
+        return;
+      }
       if (input === '\r') {
         socket.send(inputBuffer + '\r');
         inputBuffer = '';

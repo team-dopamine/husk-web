@@ -11,12 +11,14 @@ interface LocationState {
 
 const TerminalPage = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<Terminal | null>(null);
   const socketRef = useRef<WebSocketClient | null>(null);
   const location = useLocation();
   const connectionId = (location.state as LocationState)?.connectionId;
 
   useEffect(() => {
     const terminal = new Terminal();
+    terminalRef.current = terminal;
     const socket = new WebSocketClient('wss://husk.kr/ws/ssh-terminal');
     socketRef.current = socket;
 
@@ -28,16 +30,15 @@ const TerminalPage = () => {
 
     if (containerRef.current) {
       terminal.open(containerRef.current);
+      terminal.focus();
       terminal.fit();
       resizeObserver.observe(containerRef.current);
     }
 
-    // ✅ WebSocket 연결되면 connect 메시지 전송
     socket.onOpen(() => {
       socket.send(`connect:${connectionId}`);
     });
 
-    // ✅ 서버 → 터미널
     socket.onMessage((data: string) => {
       terminal.write(data);
     });
@@ -60,6 +61,8 @@ const TerminalPage = () => {
           inputBuffer = inputBuffer.slice(0, -1);
           terminal.write('\b \b');
         }
+      } else if (input.startsWith('\u001b')) {
+        socket.send(input);
       } else {
         inputBuffer += input;
         terminal.write(input);
@@ -73,9 +76,28 @@ const TerminalPage = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key === 'c') {
+        e.preventDefault();
+        socketRef.current?.send('\x03');
+      }
+
+      if ((e.ctrlKey && e.key === 'v') || (e.metaKey && e.key === 'v')) {
+        e.preventDefault();
+        navigator.clipboard.readText().then((text) => {
+          terminalRef.current?.write(text);
+          socketRef.current?.send(text);
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <PageWrapper>
-      {/* <TerminalContainer ref={containerRef} /> */}
       <TerminalContainer ref={containerRef} tabIndex={0} />
     </PageWrapper>
   );

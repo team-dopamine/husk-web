@@ -6,14 +6,11 @@ const Sidebar = () => {
 
   return (
     <SidebarWrapper>
+      <SidebarItem onClick={() => navigate('/dashboard/keychains')}>
+        <ButtonImg>🔐</ButtonImg>Keychain
+      </SidebarItem>
       <SidebarItem onClick={() => navigate('/dashboard/connections')}>
         <ButtonImg>🚀</ButtonImg>SSH Connection
-      </SidebarItem>
-      <SidebarItem onClick={() => navigate('/dashboard/keychains')}>
-        <ButtonImg>🔒</ButtonImg>Keychain
-      </SidebarItem>
-      <SidebarItem onClick={() => navigate('#')}>
-        <ButtonImg>💻</ButtonImg>User Terminal
       </SidebarItem>
     </SidebarWrapper>
   );

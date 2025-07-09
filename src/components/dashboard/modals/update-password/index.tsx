@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { ReactComponent as CloseIcon } from '@assets/CloseIcon.svg';
-import { Label, ModalContent, Overlay, InputWrapper, InputField, CloseButton, SubmitButton, ErrorText } from './index.style';
+import { Label, ModalContent, Overlay, InputWrapper, InputField, CloseButton, SubmitButton, ErrorText, WithdrawButton } from './index.style';
 import useModal from '@hooks/useModal';
 import postVerifyPassword from '@api/verify-password';
 import patchUser from '@api/user';
 import { UpdateModalProps } from '../types';
+import { AuthContext } from '@api/context/auth-context';
 
 const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
@@ -18,6 +19,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
+  const { isLoggedIn, logout, withdraw, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleSubmit = async () => {
     if (!newPassword.trim() || !confirmPassword.trim()) {
@@ -44,6 +46,32 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const handleLogout = async () => {
+    if (!accessToken || !refreshToken) {
+      console.error('로그아웃 실패: 토큰이 없습니다.');
+      return;
+    }
+    try {
+      await logout(accessToken, refreshToken);
+    } catch (error) {
+      console.error('로그아웃 오류:', error);
+    }
+  };
+  const handleWithdraw = async () => {
+    if (!isLoggedIn) return;
+    if (!accessToken) {
+      console.error('회원탈퇴 실패: 토큰이 없습니다.');
+      return;
+    }
+    // TODO: 확인 메시지 추가 예정
+    try {
+      await withdraw(accessToken);
+      handleLogout();
+    } catch (error) {
+      console.error('회원탈퇴 오류:', error);
+    }
+  };
+
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
       <ModalContent onClick={(e) => e.stopPropagation()} style={{ margin: '24px' }}>
@@ -64,6 +92,7 @@ const UpdateModal: React.FC<UpdateModalProps> = ({ isOpen, onClose }) => {
         <SubmitButton type="primary" onClick={handleSubmit} disabled={loading}>
           {loading ? '확인 중' : '재설정하기'}
         </SubmitButton>
+        <WithdrawButton onClick={handleWithdraw}>탈퇴하기</WithdrawButton>
       </ModalContent>
     </Overlay>,
     document.body

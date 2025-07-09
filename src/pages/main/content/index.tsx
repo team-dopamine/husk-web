@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../api/context/use-auth';
 import { useRef } from 'react';
 import SSHGif from 'assets/SSH.gif';
+import KEYCHAINGif from 'assets/KEYCHAIN.gif';
 
 const Content = () => {
   const navigate = useNavigate();
@@ -39,34 +40,17 @@ const Content = () => {
 
       <MainContent>
         <ContentContainer>
-          <ContentImage src={SSHGif} ref={scrollRef} />
+          <ContentImage src={KEYCHAINGif} ref={scrollRef} />
+          <TextContainer>
+            <MainTitle>KeyChain</MainTitle>
+            <MainDescription>SSH 키를 안전하게 저장하고 관리할 수 있습니다. 한눈에 키 목록을 확인하고 손쉽게 추가 또는 수정할 수 있습니다.</MainDescription>
+          </TextContainer>
+        </ContentContainer>
+        <ContentContainer>
+          <ContentImage src={SSHGif} />
           <TextContainer>
             <MainTitle>SSH Connection</MainTitle>
             <MainDescription>SSH 연결을 통해 원격 서버에 접속할 수 있습니다.</MainDescription>
-          </TextContainer>
-        </ContentContainer>
-
-        <ContentContainer>
-          <ContentImage />
-          <TextContainer>
-            <MainTitle>Multiple Window</MainTitle>
-            <MainDescription>여러 개의 터미널 창을 열어 작업을 병렬로 진행할 수 있습니다.</MainDescription>
-          </TextContainer>
-        </ContentContainer>
-
-        <ContentContainer>
-          <ContentImage />
-          <TextContainer>
-            <MainTitle>Chatbot Support</MainTitle>
-            <MainDescription>챗봇을 통해 터미널 사용법을 학습하고, 명령어를 추천받을 수 있습니다.</MainDescription>
-          </TextContainer>
-        </ContentContainer>
-
-        <ContentContainer>
-          <ContentImage />
-          <TextContainer>
-            <MainTitle>PC File System</MainTitle>
-            <MainDescription>사용자의 PC 파일 시스템을 터미널에서 사용할 수 있습니다.</MainDescription>
           </TextContainer>
         </ContentContainer>
       </MainContent>

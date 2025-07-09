@@ -29,16 +29,22 @@ const SigninContent: React.FC = () => {
     }
   };
 
+  const handleKeyUp = (e: { key: string }) => {
+    if (e.key === 'Enter') {
+      handleLogin();
+    }
+  };
+
   return (
     <>
       <Container>
         <ContentWrapper>
           <Title>Sign In</Title>
           <Label style={{ alignSelf: 'flex-start' }}>Email</Label>
-          <InputField type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <InputField type="email" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} onKeyUp={handleKeyUp} required />
 
           <Label style={{ alignSelf: 'flex-start' }}>Password</Label>
-          <InputField type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <InputField type="password" placeholder="Enter your password" value={password} onChange={(e) => setPassword(e.target.value)} onKeyUp={handleKeyUp} required />
 
           <LoginButton onClick={handleLogin} disabled={loading}>
             {loading ? 'Signing in...' : 'Sign In'}

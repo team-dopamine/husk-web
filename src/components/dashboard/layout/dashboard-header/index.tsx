@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '@api/context/auth-context';
-import { HeaderWrapper, LogoWrapper, Logo, UserActionButtons, EditProfileButton, LogoutButton } from './index.style';
+import { HeaderWrapper, LogoWrapper, Logo, UserActionButtons, UserAccountIconWrapper, LogoutIconWrapper } from './index.style';
 import { ReactComponent as HUSK } from '@assets/HUSK.svg';
 import UpdateModal from '@components/dashboard/modals/update-password';
+import { ReactComponent as UserAccount } from '@assets/UserAccount.svg';
+import { ReactComponent as Logout } from '@assets/Logout.svg';
 
 const DashboardHeader: React.FC = () => {
   const navigate = useNavigate();
@@ -30,14 +32,18 @@ const DashboardHeader: React.FC = () => {
         <Logo>HUSK</Logo>
       </LogoWrapper>
       <UserActionButtons>
-        <EditProfileButton onClick={() => setIsModalOpen(true)}>정보수정</EditProfileButton>
+        <UserAccountIconWrapper onClick={() => setIsModalOpen(true)}>
+          <UserAccount />
+        </UserAccountIconWrapper>
         <UpdateModal
           isOpen={isModalOpen}
           onClose={() => {
             setIsModalOpen(false);
           }}
         />
-        <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
+        <LogoutIconWrapper onClick={handleLogout}>
+          <Logout />
+        </LogoutIconWrapper>
       </UserActionButtons>
     </HeaderWrapper>
   );

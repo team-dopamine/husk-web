@@ -53,30 +53,25 @@ export const HuskLogo = styled.img`
   border-radius: 50%;
 `;
 
-export const UserActionButtons = styled.div``;
+export const UserActionButtons = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 
-export const EditProfileButton = styled(Button)`
-  background-color: black !important;
-  opacity: 50% !important;
-  text-decoration: none;
-  color: white;
+  svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: fill 0.2s ease-in-out;
 
-  &:hover {
-    background-color: white !important;
-    color: gray !important;
-    font-weight: 700;
-    border-color: gray !important;
+    &:hover {
+      color: gray;
+    }
   }
 `;
 
-export const LogoutButton = styled(Button)`
-  background-color: var(--main-color) !important;
-  text-decoration: none;
-  color: white;
-  &:hover {
-    background-color: white !important;
-    color: var(--main-color) !important;
-    font-weight: 600;
-    border-color: var(--main-color) !important;
-  }
+export const UserAccountIconWrapper = styled.div`
+  margin-right: 10px;
 `;
+
+export const LogoutIconWrapper = styled.div``;

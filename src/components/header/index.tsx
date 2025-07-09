@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderWrapper, LogoWrapper, LogoImg, Logo, LoginButton, WithdrawButton, AuthBox } from './index.style';
+import { HeaderWrapper, LogoWrapper, Logo, LoginButton, AuthBox } from './index.style';
 import { AuthContext } from 'api/context/auth-context';
 import { ReactComponent as HUSK } from 'assets/HUSK.svg';
 
@@ -24,20 +24,6 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/signi
     }
   };
 
-  const handleWithdraw = async () => {
-    if (!isLoggedIn) return;
-    if (!accessToken) {
-      console.error('회원탈퇴 실패: 토큰이 없습니다.');
-      return;
-    }
-    // TODO: 확인 메시지 추가 예정
-    try {
-      await withdraw(accessToken);
-      handleLogout();
-    } catch (error) {
-      console.error('회원탈퇴 오류:', error);
-    }
-  };
   return (
     <HeaderWrapper>
       <LogoWrapper as={Link} to="/">
@@ -54,10 +40,6 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/signi
             Login
           </LoginButton>
         )}
-        {/* TODO: 추후 위치 변경예정 */}
-        <WithdrawButton type="primary" onClick={handleWithdraw}>
-          탈퇴하기
-        </WithdrawButton>
       </AuthBox>
     </HeaderWrapper>
   );

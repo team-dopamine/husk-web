@@ -123,3 +123,15 @@ export const ErrorText = styled.p`
   margin-bottom: 5px;
   color: red;
 `;
+
+export const WithdrawButton = styled.button`
+  color: gray;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  cursor: pointer;
+  margin-left: auto;
+`;

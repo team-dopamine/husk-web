@@ -24,7 +24,7 @@ const Content = () => {
   };
   const handleOAuthSignIn = (provider: string) => {
     if (provider === 'email') {
-      navigate('/auth/signin');
+      navigate('/auth/sign-in');
     } else if (provider === 'google') {
       googleLogin();
     } else if (provider === 'github') {

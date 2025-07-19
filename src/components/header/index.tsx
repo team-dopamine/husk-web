@@ -9,7 +9,7 @@ interface HeaderProps {
   goToLoginPage?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/signin' }) => {
+const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-in' }) => {
   const { isLoggedIn, logout, withdraw, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleLogout = async () => {

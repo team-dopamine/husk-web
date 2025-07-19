@@ -15,7 +15,7 @@ const Content = () => {
 
   const handleNextClick = () => {
     if (isVerified) {
-      navigate('/signin');
+      navigate('/sign-in');
     }
   };
 
@@ -30,7 +30,7 @@ const Content = () => {
 
   const nextButtonConfig = {
     label: 'Login',
-    href: '/signin',
+    href: '/sign-in',
     onClick: handleNextClick,
     disabled: !isVerified,
   };

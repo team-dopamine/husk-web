@@ -24,7 +24,7 @@ const Google = () => {
             navigate('/');
           }
         } else if (status == 400) {
-          navigate('/signin');
+          navigate('/sign-in');
         }
       } catch (err) {
         console.error('Google 로그인 오류:', err);

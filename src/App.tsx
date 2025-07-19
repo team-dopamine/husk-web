@@ -30,8 +30,8 @@ const App: React.FC = () => {
             <Routes>
               <Route path="/" element={<Frame />}>
                 <Route index element={<Main />} />
-                <Route path="signin" element={<SignIn />} />
-                <Route path="auth/signin" element={<AuthSignIn />} />
+                <Route path="sign-in" element={<SignIn />} />
+                <Route path="auth/sign-in" element={<AuthSignIn />} />
                 <Route path="signup" element={<SignUp />} />
                 <Route path="terms" element={<ReadTerms />} />
                 <Route path="password" element={<Password />} />

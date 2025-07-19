@@ -24,7 +24,7 @@ const Content = () => {
 
   const previousButtonConfig = {
     label: 'Previous',
-    href: '/signin',
+    href: '/sign-in',
   };
 
   const nextButtonConfig = {

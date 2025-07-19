@@ -19,7 +19,7 @@ const Content = () => {
     if (isLoggedIn) {
       navigate('/dashboard');
     } else {
-      navigate('/signin');
+      navigate('/sign-in');
     }
   };
 

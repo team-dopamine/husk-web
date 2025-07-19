@@ -28,7 +28,7 @@ api.interceptors.response.use(
     if (error.response?.status === 401 && errorMessage === '토큰이 만료되었습니다') {
       console.warn('인증 실패. 로그아웃 처리.');
       alert('세션이 만료되었습니다. 다시 로그인해주세요.');
-      window.location.href = '/signin';
+      window.location.href = '/sign-in';
     }
     return Promise.reject(error);
   }

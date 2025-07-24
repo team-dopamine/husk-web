@@ -37,4 +37,7 @@ export default class Terminal {
   onData(callback: (data: string) => void) {
     this.xterm.onData(callback);
   }
+  focus() {
+    this.xterm.focus();
+  }
 }

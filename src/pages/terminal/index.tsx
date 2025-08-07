@@ -58,8 +58,12 @@ const TerminalPage = () => {
         inputBuffer = '';
       } else if (input === '\u007f') {
         if (inputBuffer.length > 0) {
-          inputBuffer = inputBuffer.slice(0, -1);
-          terminal.write('\b \b');
+          /* 연속 백스페이스 시 안 먹히는 오류 해결 */
+          const codeArray = Array.from(inputBuffer);
+          const deletedChar = codeArray.pop();
+          inputBuffer = codeArray.join('');
+          const charWidth = deletedChar ? Array.from(deletedChar).length : 1;
+          terminal.write('\b \b'.repeat(charWidth));
         }
       } else if (input.startsWith('\u001b')) {
         socket.send(input);
@@ -74,26 +78,6 @@ const TerminalPage = () => {
       socket.close();
       resizeObserver.disconnect();
     };
-  }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key === 'c') {
-        e.preventDefault();
-        socketRef.current?.send('\x03');
-      }
-
-      if ((e.ctrlKey && e.key === 'v') || (e.metaKey && e.key === 'v')) {
-        e.preventDefault();
-        navigator.clipboard.readText().then((text) => {
-          terminalRef.current?.write(text);
-          socketRef.current?.send(text);
-        });
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (

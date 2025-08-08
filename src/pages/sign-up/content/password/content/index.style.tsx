@@ -41,7 +41,7 @@ export const Label = styled.div`
 `;
 
 export const PasswordWrapper = styled(WrapperStyle)`
-  margin-bottom: 25px;
+  margin-bottom: 40px;
   flex-direction: column;
 `;
 
@@ -56,4 +56,5 @@ export const InputField = styled(InputStyle)<{ isError: boolean }>`
 export const Message = styled(Label)<{ isError: boolean }>`
   color: ${(props) => (props.isError ? 'red' : 'gray')};
   margin: 0;
+  margin-bottom: -32px;
 `;

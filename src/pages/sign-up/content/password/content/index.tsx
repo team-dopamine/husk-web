@@ -48,11 +48,11 @@ const PasswordSetting: React.FC<PasswordProps> = ({ onInputChange }) => {
   const renderMessage = (id: string, showMessage: boolean): React.ReactNode => {
     if (!state.touched[id as keyof typeof state.touched]) return null;
 
-    if (showMessage && id === 'password' && !state.isValid.password) {
+    if (showMessage && id === 'password' && !state.isValid.password && state.inputs.password !== '') {
       return <Message isError>8~16자 영문 대 소문자, 숫자, 특수문자를 포함해야 합니다.</Message>;
     }
 
-    if (id === 'passwordVerify' && !state.isValid.passwordVerify) {
+    if (id === 'passwordVerify' && !state.isValid.passwordVerify && state.inputs.passwordVerify !== '') {
       return <Message isError>비밀번호가 일치하지 않습니다.</Message>;
     }
 

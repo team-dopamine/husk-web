@@ -103,3 +103,10 @@ export const CloseButton = styled.button`
     opacity: 0.7;
   }
 `;
+
+export const ErrorText = styled.div`
+  margin-top: 3px;
+  font-size: 12px;
+  color: #ef4444;
+  margin-bottom: -17px;
+`;

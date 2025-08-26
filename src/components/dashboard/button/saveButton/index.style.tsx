@@ -11,8 +11,9 @@ export const Container = styled.div`
 `;
 
 export const ActionButton = styled.button`
-  width: 272px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
+
   background: none;
   border: none;
   color: white;
@@ -20,6 +21,10 @@ export const ActionButton = styled.button`
   cursor: pointer;
   padding: 5px 10px;
   outline: none;
+  transition:
+    background-color 0.2s,
+    opacity 0.2s,
+    cursor 0.2s;
 
   &:hover {
     opacity: 0.8;
@@ -28,5 +33,11 @@ export const ActionButton = styled.button`
   &:focus {
     outline: none;
     box-shadow: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    border-radius: 10px;
+    cursor: not-allowed;
   }
 `;

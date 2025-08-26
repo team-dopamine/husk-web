@@ -40,18 +40,17 @@ export const LogoImg = styled.div`
   opacity: 10%;
 `;
 
-export const LoginButton = styled(Button)`
-  background-color: var(--main-color) !important;
-  text-decoration: none;
+export const LogoutButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
 
-  &:hover {
-    background-color: white !important;
-    color: var(--main-color) !important;
-    font-weight: 600;
-    border-color: var(--main-color) !important;
+  &:focus {
+    outline: none;
   }
 `;
-
 export const WithdrawButton = styled(Button)`
   background-color: black !important;
   opacity: 30% !important;

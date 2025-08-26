@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderWrapper, LogoWrapper, Logo, LoginButton, AuthBox } from './index.style';
+import { HeaderWrapper, LogoWrapper, Logo, LogoutButton, AuthBox } from './index.style';
 import { AuthContext } from 'api/context/auth-context';
 import { ReactComponent as HUSK } from 'assets/HUSK.svg';
 import { ReactComponent as Logout } from 'assets/Logout.svg';
@@ -34,9 +34,9 @@ const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
       </LogoWrapper>
       <AuthBox>
         {isLoggedIn ? (
-          <button onClick={handleLogout}>
+          <LogoutButton onClick={handleLogout}>
             <Logout />
-          </button>
+          </LogoutButton>
         ) : (
           <Link to={goToLoginPage}>
             <Login width={24} height={24} style={{ color: 'black' }} />

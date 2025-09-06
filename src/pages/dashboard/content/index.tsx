@@ -27,7 +27,7 @@ const Content = ({ open, onClose }: GuideModalProps) => {
           <li>
             연결 생성: 좌측 <b>SSH Connection</b>에서 서버 정보(호스트/포트/유저)를 입력하고 방금 등록한 키체인을 선택하세요.
           </li>
-          <li>터미널 접속: 연결 카드를 누르면 브라우저 터미널이 열립니다.</li>
+          <li>터미널 접속: 연결 카드를 누르면 웹터미널이 열립니다.</li>
           <li>관리: 키체인 카드의 ⋮ 메뉴에서 이름 변경/삭제가 가능합니다.</li>
         </DescList>
 

@@ -19,7 +19,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, currentP
     });
   };
 
-  const hasWhitespaceInConnectionName = currentPage === 'connections' && /\s/.test(inputValues[0] ?? '');
+  const hasWhitespace = currentPage === 'connections' && /\s/.test(inputValues[0] ?? '');
 
   return ReactDOM.createPortal(
     <Overlay onClick={onClose}>
@@ -50,7 +50,7 @@ const RegisterModal: React.FC<RegisterModalProps> = ({ isOpen, onClose, currentP
         </InputWrapper>
 
         <ButtonWrapper>
-          <SaveButton inputValues={inputValues} onClose={onClose} currentPage={currentPage} disabled={hasWhitespaceInConnectionName} />
+          <SaveButton inputValues={inputValues} onClose={onClose} currentPage={currentPage} disabled={hasWhitespace} />
         </ButtonWrapper>
       </ModalContent>
     </Overlay>,

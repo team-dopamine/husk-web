@@ -1,16 +1,18 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderWrapper, LogoWrapper, Logo, LoginButton, AuthBox } from './index.style';
+import { HeaderWrapper, LogoWrapper, Logo, LogoutButton, AuthBox } from './index.style';
 import { AuthContext } from 'api/context/auth-context';
 import { ReactComponent as HUSK } from 'assets/HUSK.svg';
+import { ReactComponent as Logout } from 'assets/Logout.svg';
+import { ReactComponent as Login } from 'assets/Login.svg';
 
 interface HeaderProps {
   logoHref?: string;
   goToLoginPage?: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-in' }) => {
-  const { isLoggedIn, logout, withdraw, accessToken, refreshToken } = useContext(AuthContext)!;
+const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
+  const { isLoggedIn, logout, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleLogout = async () => {
     if (!accessToken || !refreshToken) {
@@ -32,13 +34,13 @@ const Header: React.FC<HeaderProps> = ({ logoHref = '/', goToLoginPage = '/sign-
       </LogoWrapper>
       <AuthBox>
         {isLoggedIn ? (
-          <LoginButton type="primary" onClick={handleLogout}>
-            Logout
-          </LoginButton>
+          <LogoutButton onClick={handleLogout}>
+            <Logout />
+          </LogoutButton>
         ) : (
-          <LoginButton type="primary" href={goToLoginPage}>
-            Login
-          </LoginButton>
+          <Link to={goToLoginPage}>
+            <Login width={24} height={24} style={{ color: 'black' }} />
+          </Link>
         )}
       </AuthBox>
     </HeaderWrapper>

@@ -1,26 +1,21 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
+import Cookies from 'js-cookie';
 import Content from './content';
 
-const ONBOARD_KEY = 'onboard:dashboard:v1';
+const COOKIE_KEY = 'husk.guide.dismissed';
+const HIDE_DAYS = 7;
 
 const Dashboard = () => {
-  const [isGuideOpen, setIsGuideOpen] = useState(false);
-
-  useEffect(() => {
-    const dismissed = localStorage.getItem(ONBOARD_KEY) === '1';
-    if (!dismissed) setIsGuideOpen(true);
-  }, []);
+  const [isGuideOpen, setIsGuideOpen] = useState(() => Cookies.get(COOKIE_KEY) !== '1');
 
   const handleCloseGuide = useCallback((dontShowAgain?: boolean) => {
-    if (dontShowAgain) localStorage.setItem(ONBOARD_KEY, '1');
+    if (dontShowAgain) {
+      Cookies.set(COOKIE_KEY, '1', { expires: HIDE_DAYS, path: '/' });
+    }
     setIsGuideOpen(false);
   }, []);
 
-  return (
-    <>
-      <Content open={isGuideOpen} onClose={handleCloseGuide} />
-    </>
-  );
+  return <Content open={isGuideOpen} onClose={handleCloseGuide} />;
 };
 
 export default Dashboard;

@@ -5,24 +5,18 @@ import { AuthContext } from 'api/context/auth-context';
 import { Container, ContentWrapper, Title, InputField, LoginButton, Label, ResetPasswordLink, ResetPasswordText } from '@pages/sign-in/sign-in-email/content/index.style';
 
 const EMAIL_COOKIE = 'rememberEmail';
-const COOKIE_MAX_DAYS = 30;
 
-function setCookie(name: string, value: string, days: number) {
-  const expires = new Date();
-  expires.setDate(expires.getDate() + days);
+function setCookie(name: string, value: string) {
   const isSecure = typeof window !== 'undefined' && window.location.protocol === 'https:';
-  const cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)};` + `expires=${expires.toUTCString()};path=/;SameSite=Lax;` + (isSecure ? 'Secure;' : '');
-  document.cookie = cookie;
+  document.cookie = `${encodeURIComponent(name)}=${encodeURIComponent(value)};` + `path=/;SameSite=Lax;` + (isSecure ? 'Secure;' : '');
 }
 
 function getCookie(name: string): string | null {
   const target = `${encodeURIComponent(name)}=`;
   const parts = document.cookie.split(';');
-  for (const part of parts) {
-    const trimmed = part.trim();
-    if (trimmed.startsWith(target)) {
-      return decodeURIComponent(trimmed.substring(target.length));
-    }
+  for (const p of parts) {
+    const s = p.trim();
+    if (s.startsWith(target)) return decodeURIComponent(s.substring(target.length));
   }
   return null;
 }
@@ -38,11 +32,7 @@ const SigninContent: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const auth = useContext(AuthContext);
-
-  if (!auth) {
-    throw new Error('AuthContext.Provider로 감싸야 합니다.');
-  }
-
+  if (!auth) throw new Error('AuthContext.Provider로 감싸야 합니다.');
   const { login } = auth;
 
   const navigate = useNavigate();
@@ -55,20 +45,10 @@ const SigninContent: React.FC = () => {
     }
   }, []);
 
-  const toggleRemember = useCallback((checked: boolean, currentEmail: string) => {
+  const toggleRemember = useCallback((checked: boolean) => {
     setRememberEmail(checked);
-    if (checked) {
-      setCookie(EMAIL_COOKIE, currentEmail ?? '', COOKIE_MAX_DAYS);
-    } else {
-      deleteCookie(EMAIL_COOKIE);
-    }
+    if (!checked) deleteCookie(EMAIL_COOKIE);
   }, []);
-
-  useEffect(() => {
-    if (rememberEmail) {
-      setCookie(EMAIL_COOKIE, email, COOKIE_MAX_DAYS);
-    }
-  }, [email, rememberEmail]);
 
   const handleLogin = async () => {
     try {
@@ -79,7 +59,7 @@ const SigninContent: React.FC = () => {
         const { accessToken, refreshToken } = response.jwtTokenDto;
 
         if (rememberEmail) {
-          setCookie(EMAIL_COOKIE, email, COOKIE_MAX_DAYS);
+          setCookie(EMAIL_COOKIE, email);
         } else {
           deleteCookie(EMAIL_COOKIE);
         }
@@ -95,9 +75,7 @@ const SigninContent: React.FC = () => {
   };
 
   const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      void handleLogin();
-    }
+    if (e.key === 'Enter') void handleLogin();
   };
 
   return (
@@ -107,8 +85,16 @@ const SigninContent: React.FC = () => {
         <Label style={{ alignSelf: 'flex-start' }}>Email</Label>
         <InputField type="email" placeholder="Enter your email" value={email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} onKeyUp={handleKeyUp} required />
 
-        <div style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 8, marginTop: 8 }}>
-          <input id="rememberEmail" type="checkbox" checked={rememberEmail} onChange={(e) => toggleRemember(e.target.checked, email)} />
+        <div
+          style={{
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+            marginTop: 8,
+          }}
+        >
+          <input id="rememberEmail" type="checkbox" checked={rememberEmail} onChange={(e) => toggleRemember(e.target.checked)} />
           <label htmlFor="rememberEmail">Remember Email</label>
         </div>
 

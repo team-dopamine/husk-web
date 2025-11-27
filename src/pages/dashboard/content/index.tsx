@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Overlay, Backdrop, ModalCard, CloseButton, Title, DescList, CheckboxRow, Footer, OutlineButton } from './index.style';
+import { Overlay, Backdrop, ModalCard, CloseButton, Title, DescList, CheckboxRow, Footer, OutlineButton } from './index.style';
 
 type GuideModalProps = {
   open: boolean;

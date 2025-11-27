@@ -25,7 +25,7 @@ reviews:
   auto_assign_reviewers: false
   poem: false
 
-  # 👉 src 아래 TS/TSX 파일들에만 적용되는 리뷰 규칙
+  # src 아래 TS/TSX 파일들에만 적용되는 리뷰 규칙
   path_instructions:
     - path: "src/**/*.{ts,tsx}"
       instructions: >
@@ -38,7 +38,7 @@ reviews:
         7. 멤버, 함수명은 camelCase로 작성합니다.
         8. React + TypeScript 코드의 경우, 불필요한 리렌더링, 훅 의존성 배열, 과도한 any 사용 여부도 함께 확인해주세요.
 
-  # 👉 리뷰에서 제외할 경로들
+  # 리뷰에서 제외할 경로들
   path_filters:
     - "!**/node_modules/**"
     - "!**/build/**"

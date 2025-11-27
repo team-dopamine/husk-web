@@ -48,10 +48,10 @@ reviews:
     - "!**/Dockerfile" 
 
   auto_review:
-   # false 할 경우 `@coderabbitai review`를 코멘트에 입력
-   enabled: true
-   # 이미 리뷰가 진행된 PR에 새로운 커밋이 추가될 때, 변경된 부분에 대해서만 자동으로 리뷰를 진행할지 여부입니다.
-   auto_incremental_review: false
+    # false 할 경우 `@coderabbitai review`를 코멘트에 입력
+    enabled: true
+    # 이미 리뷰가 진행된 PR에 새로운 커밋이 추가될 때, 변경된 부분에 대해서만 자동으로 리뷰를 진행할지 여부입니다.
+    auto_incremental_review: false
 
   instructions: |
     1. 코드에서의 오타, 불필요한 로직, 중복 코드, 서비스/도메인 설계, 예외 처리를 확인해주세요.

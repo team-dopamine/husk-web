@@ -26,10 +26,26 @@ reviews:
   poem: false
 
   path_filters:
-    - "!**/target/**"
+    - "!**/node_modules/**"
     - "!**/build/**"
-    - "!**/application*.yml"
-    - "!**/pom.xml"
+    - "!**/dist/**"
+
+    - "!**/public/**"
+
+    - "!**/.env"
+    - "!**/.env.*"
+
+    - "!**/.vscode/**"
+    - "!**/.husky/**"
+    - "!**/.github/**"
+
+    - "!**/*.d.ts"
+
+    - "!**/package-lock.json"
+    - "!**/yarn.lock"
+    - "!**/pnpm-lock.yaml"
+
+    - "!**/Dockerfile" 
 
   auto_review:
    # false 할 경우 `@coderabbitai review`를 코멘트에 입력

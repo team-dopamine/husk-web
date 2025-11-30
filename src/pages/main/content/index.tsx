@@ -4,8 +4,11 @@ import { useAuth } from '../../../api/context/use-auth';
 import { useRef } from 'react';
 import SSHGif from 'assets/SSH.gif';
 import KEYCHAINGif from 'assets/KEYCHAIN.gif';
+import { useTranslation } from 'react-i18next';
 
 const Content = () => {
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
 
@@ -27,7 +30,7 @@ const Content = () => {
     <>
       <Banner>
         <Title>HUSK: Help Use Shell Kindly</Title>
-        <Description>HUSK는 웹 기반 터미널 서비스입니다. 사용자들은 터미널을 통해 다양한 기능을 사용할 수 있습니다.</Description>
+        <Description>{t('home.description')}</Description>
         <ButtonContainer>
           <FunctionButton type="primary" onClick={handleScrollClick}>
             기능 소개

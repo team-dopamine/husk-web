@@ -42,8 +42,8 @@ const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
       </LogoWrapper>
       <AuthBox>
         <LanguageWrapper>
-          <LanguageButton>
-            <Language width={24} height={24} style={{ cursor: 'point' }} onClick={onclickFunction}></Language>
+          <LanguageButton onClick={onclickFunction} aria-label="언어 변경">
+            <Language width={24} height={24}></Language>
           </LanguageButton>
         </LanguageWrapper>
         {isOpen && <LanguageModal onClose={closeModal} />}

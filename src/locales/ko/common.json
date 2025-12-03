@@ -1,5 +1,18 @@
 {
   "home": {
-    "description": "HUSK는 웹 기반 터미널 서비스입니다. 사용자들은 터미널을 통해 다양한 기능을 사용할 수 있습니다."
+    "description": "HUSK는 웹 기반 터미널 서비스입니다. 사용자들은 터미널을 통해 다양한 기능을 사용할 수 있습니다.",
+
+    "feature_button": "기능 소개",
+    "start_button": "시작하기",
+
+    "keychain": {
+      "title": "KeyChain",
+      "description": "SSH 키를 안전하게 저장하고 관리할 수 있습니다. 한눈에 키 목록을 확인하고 손쉽게 추가 또는 수정할 수 있습니다."
+    },
+
+    "ssh": {
+      "title": "SSH Connection",
+      "description": "SSH 연결을 통해 원격 서버에 접속할 수 있습니다."
+    }
   }
 }

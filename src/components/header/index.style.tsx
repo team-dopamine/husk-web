@@ -40,6 +40,19 @@ export const LogoImg = styled.div`
   opacity: 10%;
 `;
 
+export const LanguageButton = styled.button`
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 20px;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 export const LogoutButton = styled.button`
   background: none;
   border: none;
@@ -72,4 +85,9 @@ export const LogoWrapper = styled(Link)`
   align-items: center;
   text-decoration: none;
   color: inherit;
+`;
+
+export const LanguageWrapper = styled.div`
+  position: relative;
+  display: inline-block;
 `;

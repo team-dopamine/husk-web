@@ -1,0 +1,18 @@
+{
+  "home": {
+    "description": "HUSK 是一项基于网页的终端服务。用户可以通过终端使用各种功能。",
+
+    "feature_button": "功能介绍",
+    "start_button": "开始使用",
+
+    "keychain": {
+      "title": "KeyChain",
+      "description": "可以安全地存储和管理 SSH 密钥，一目了然地查看密钥列表，并轻松添加或修改。"
+    },
+
+    "ssh": {
+      "title": "SSH 连接",
+      "description": "通过 SSH 连接访问远程服务器。"
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { HeaderWrapper, LogoWrapper, Logo, LogoutButton, AuthBox } from './index.style';
 import { AuthContext } from 'api/context/auth-context';
+import useModal from '@hooks/useModal';
+import LanguageModal from './modal';
 import { ReactComponent as HUSK } from 'assets/HUSK.svg';
 import { ReactComponent as Logout } from 'assets/Logout.svg';
 import { ReactComponent as Login } from 'assets/Login.svg';
+import { ReactComponent as Language } from 'assets/Language.svg';
+import { HeaderWrapper, LogoWrapper, LanguageWrapper, Logo, LanguageButton, LogoutButton, AuthBox } from './index.style';
 
 interface HeaderProps {
   logoHref?: string;
@@ -12,7 +15,7 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
-  const { isLoggedIn, logout, accessToken, refreshToken } = useContext(AuthContext)!;
+  const { logout, isLoggedIn, accessToken, refreshToken } = useContext(AuthContext)!;
 
   const handleLogout = async () => {
     if (!accessToken || !refreshToken) {
@@ -26,6 +29,11 @@ const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
     }
   };
 
+  const { isOpen, toggleModal, closeModal } = useModal();
+  const onclickFunction = () => {
+    toggleModal();
+  };
+
   return (
     <HeaderWrapper>
       <LogoWrapper as={Link} to="/">
@@ -33,6 +41,12 @@ const Header: React.FC<HeaderProps> = ({ goToLoginPage = '/sign-in' }) => {
         <Logo>HUSK</Logo>
       </LogoWrapper>
       <AuthBox>
+        <LanguageWrapper>
+          <LanguageButton onClick={onclickFunction} aria-label="언어 변경">
+            <Language width={24} height={24}></Language>
+          </LanguageButton>
+        </LanguageWrapper>
+        {isOpen && <LanguageModal onClose={closeModal} />}
         {isLoggedIn ? (
           <LogoutButton onClick={handleLogout}>
             <Logout />

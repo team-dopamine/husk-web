@@ -1,0 +1,18 @@
+{
+  "home": {
+    "description": "HUSK is a web-based terminal service that allows users to access and utilize various features through an online terminal environment.",
+
+    "feature_button": "Features",
+    "start_button": "Get Started",
+
+    "keychain": {
+      "title": "KeyChain",
+      "description": "Securely store and manage SSH keys. View your key list at a glance and easily add or modify them."
+    },
+
+    "ssh": {
+      "title": "SSH Connection",
+      "description": "Connect to remote servers via SSH."
+    }
+  }
+}

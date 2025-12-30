@@ -12,15 +12,13 @@ interface ErrorResponse {
 }
 
 const postSendCode = async (data: RentalRequestData): Promise<void> => {
-  console.log('data', data);
-
   try {
     const response = await api.post('auth/send-code', data, {
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    console.log(response);
+
     alert(response.data.message);
   } catch (error: unknown) {
     if (error instanceof AxiosError && error.response) {

@@ -12,7 +12,6 @@ const Content = () => {
     const fetchTerms = async () => {
       try {
         const terms = await getTermsOfService();
-        console.log('약관 내용:', terms);
         setTermsContent(terms);
       } catch (err) {
         setError('약관을 불러오는 중 오류가 발생했습니다.');

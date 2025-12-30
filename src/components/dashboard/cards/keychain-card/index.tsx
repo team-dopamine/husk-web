@@ -21,7 +21,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
         const response = await getKeychainDecrypt(id);
         setDecryptedContent(response.content);
       } catch (error) {
-        console.error('복호화 실패:', error);
+        
       }
     };
 
@@ -36,7 +36,7 @@ const KeychainCard: React.FC<CardProps> = ({ title, label, className = ' ', id, 
       setDecryptedContent(response.content);
       setIsModalOpen(true);
     } catch (err) {
-      console.error('복호화 실패', err);
+      
     }
   };
   return (

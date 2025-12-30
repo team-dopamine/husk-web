@@ -29,7 +29,6 @@ export const removeToken = () => {
   try {
     sessionStorage.removeItem('accessToken');
     sessionStorage.removeItem('refreshToken');
-    console.log('스토리지에서 토큰 삭제 완료.');
   } catch (error) {
     console.error('스토리지에서 토큰 삭제 중 오류 발생:', error);
   }

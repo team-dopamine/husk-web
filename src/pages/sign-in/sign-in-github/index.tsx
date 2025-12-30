@@ -10,7 +10,7 @@ const Github = () => {
   const navigate = useNavigate();
 
   const code = searchParams.get('code');
-  console.log('Github OAuth Code:', code);
+
 
   useEffect(() => {
     const fetchGithubAuth = async () => {

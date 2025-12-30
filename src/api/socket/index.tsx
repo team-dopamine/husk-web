@@ -8,7 +8,7 @@ class WebSocketClient {
     this.socket = new WebSocket(uri);
 
     this.socket.onopen = () => {
-      console.log('[WebSocket] Connected to', uri);
+    
       this.openHandler?.();
     };
 

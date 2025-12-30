@@ -16,7 +16,6 @@ const Content = () => {
 
   const githubLogin = () => {
     if (!GITHUB_CLIENT_ID || !GITHUB_REDIRECT_URI) {
-      console.error('GitHub OAuth 설정이 올바르지 않습니다. .env 파일을 확인하세요.');
       return;
     }
     const githubAuthUrl = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&redirect_uri=${GITHUB_REDIRECT_URI}&scope=user:email`;

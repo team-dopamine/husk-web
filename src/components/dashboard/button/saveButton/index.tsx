@@ -35,7 +35,6 @@ const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues, onClose, curr
         });
         onClose();
       } catch (error) {
-        console.error('Error posting keychain:', error);
         alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');
       }
     } else if (currentPage === 'connections') {
@@ -51,7 +50,7 @@ const SaveButton: React.FC<SaveButtonGroupProps> = ({ inputValues, onClose, curr
         onClose();
         window.location.reload();
       } catch (error) {
-        console.error('Error posting connection:', error);
+      
         alert(error instanceof Error ? error.message : '데이터 저장에 실패했습니다.');
       }
     }

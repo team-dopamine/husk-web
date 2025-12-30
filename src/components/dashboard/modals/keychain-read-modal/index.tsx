@@ -29,10 +29,7 @@ const KeychainReadModal: React.FC<ModalProps> = ({ isOpen, onClose, fields, id, 
     const checked = e.target.checked;
     setShowKeychain(checked);
 
-    if (!id) {
-      console.error('선택된 ID가 없습니다.');
-      return;
-    }
+    if (!id) return;
 
     if (checked) {
       if (decryptedValue || isLoading) return;

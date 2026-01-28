@@ -1,78 +1,63 @@
-# Getting Started with Create React App
+<div align="center">
+<a href="https://husk.kr/">
+  <img
+    src="https://github.com/user-attachments/assets/7126f647-4d17-4747-b4a3-06215d5a689c"
+    alt="husk_logo"
+    width="351"
+  />
+</a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🔐 [HUSK(Help Use Shell Kindly)](https://husk.kr/)
 
-## Available Scripts
+> 키체인 등록과 웹 터미널 기반의 SSH 접속을 한 번에 제공하는 통합 서비스
 
-In the project directory, you can run:
+</div>
+<img width="1163" height="1731" alt="service intro" src="https://github.com/user-attachments/assets/15453de1-fa34-43b7-9e5a-374aa7d7cad1" />
 
-### `npm start`
+HUSK를 통해 사용자가 개인 또는 팀용 **Keychain(SSH Key)을 등록**하면, 해당 Key를 기반으로 다양한 서버에 **웹 상에서 SSH로 접속할 수 있는 터미널 환경**을 제공해줘요!
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+🧚 HUSK에서 복잡한 설정 없이 **브라우저 기반 웹 터미널**을 통해 편리하고 안전하게 서버에 접근할 수 있어요
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- 🔐 **SSH Keychain 등록/관리**
 
-### `npm test`
+  - 개인/팀용 SSH 개인 키 등록 및 암호화 저장
+  - 키를 이용한 서버 연결 흐름 자동화
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- 💻 **웹 터미널을 통한 SSH 접속**
 
-### `npm run build`
+  - 브라우저 상에서 직접 서버에 SSH 접속 가능
+  - 실시간 명령어 입력 및 응답 처리
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 🔒 **보안 중심 설계**
+  - 키 등록 시 AES 기반 서버측 암호화 처리
+  - WSS 기반 종단 간 암호화
+    <br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🎯 서비스 기획 배경
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+> "SSH 접속, 왜 이렇게 복잡해야 할까 🤷‍♂️"
 
-### `npm run eject`
+개발자나 서버 운영자는 각기 다른 서버에 접속하기 위해 키를 설정하고, CLI를 통해 접속하고, 환경을 구성하는 등 번거로운 절차를 반복합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+HUSK는 **브라우저 기반 터미널**, **SSH 키 등록 관리**, **간편한 연결 절차**를 통해 이러한 불편함을 해결하고, **보다 쉬운 DevOps 환경을 제공**하는 것을 목표로 합니다!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br/>
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 🔐 보안 처리 방식
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- SSH Key는 서버 측에서 **AES 알고리즘으로 즉시 암호화**된 후 저장되며 복호화 없이 직접 연결에 사용
+- WebSocket 연결은 **WSS 프로토콜**(HTTPS 기반)으로 암호화되어 클라이언트-서버 간 통신의 보안성 확보
 
-## Learn More
+<br/>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 시스템 아키텍처
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img
+    src="https://github.com/user-attachments/assets/0ac1e832-742c-46e7-b749-d440f3388419"
+    alt="husk_system-arch"
+    width="600"
+  />
 
-## Project Architecture
+## 🛠️ 기술 스택
 
-### apis
-
-- 외부 API와의 통신을 담당하는 함수 및 클래스 포함
-- REST API 호출, GraphQL 쿼리 등
-
-### assets
-
-- 정적 파일들을 저장하는 디렉토리
-- 이미지, 폰트, 아이콘 등
-
-### components
-
-- 재사용 가능한 UI 컴포넌트들을 저장
-- 버튼, 입력 필드, 카드 등 애플리케이션 전반에서 사용되는 UI 요소
-
-### hooks
-
-- 커스텀 React 훅을 저장
-- 상태 관리, 사이드 이펙트 처리 등을 위한 재사용 가능한 로직
-
-### pages
-
-- 라우팅 가능한 페이지 컴포넌트들을 저장
-- 홈페이지, 로그인 페이지, 프로필 페이지 등 각 라우트에 해당하는 최상위 컴포넌트
-
-### styles
-
-- 전역 스타일 또는 스타일 관련 유틸리티
-- 글로벌 CSS, 테마 설정, 스타일 상수 등
+<img width="350" alt="techstack" src="https://github.com/user-attachments/assets/df740719-e6a7-41ca-9246-b9254bfd6d87" />
